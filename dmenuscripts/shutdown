@@ -1,0 +1,40 @@
+#!/bin/sh
+
+DMENU="dmenu -l 12 -i"
+CMD="/bin/sh -c $1"
+
+menu () {
+    printf "lock\n"
+    printf "sleep\n"
+#    printf "hibernate\n"
+    printf "shutdown\n"
+    printf "restart\n"
+}
+
+choice=$(menu | $DMENU) || exit
+
+case $choice in
+    "lock")
+        $CMD slock
+        return
+        ;;
+    "sleep")
+        systemctl suspend
+        $CMD slock
+        return
+        ;;
+    "hibernate")
+        return
+        ;;
+    "shutdown")
+        shutdown -p now
+        return
+        ;;
+    "restart")
+        shutdown -r now
+        return
+        ;;
+    *)
+        echo "idk what happend. terminating..." && exit 0
+        ;;
+esac

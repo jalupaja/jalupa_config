@@ -2,9 +2,9 @@
 
 DMENU="dmenu -l 12 -i"
 CMD="/bin/sh -c $1"
-DMSCRIPTS_DIR="$HOME/.config/jalupa_dotfiles/dmenuscripts"
+DMSCRIPTS="/bin/sh -c $HOME/.config/jalupa_dotfiles/dmenuscripts"
 
-menu() {
+menu () {
     printf "dmenu\n"
     printf "kill\n"
     printf "firefox\n"
@@ -46,6 +46,10 @@ menu() {
     printf "bluetooth\n"
     printf "clipboard\n"
     printf "clear-clipboard\n"
+    printf "lock\n"
+    printf "sleep\n"
+    printf "shutdown\n"
+    printf "restart\n"
 }
 
 choice=$(menu | $DMENU ) || exit
@@ -56,7 +60,7 @@ case $choice in
         return
         ;;
     "kill")
-        /bin/sh -c $DMSCRIPTS_DIR/dmenuscripts/kill
+        $DMSCRIPTS/kill
         return
         ;;
     "firefox")
@@ -196,19 +200,36 @@ case $choice in
         return
         ;;
     "wifi")
-        /bin/sh -c $DMSCRIPTS_DIR/dmenuscripts/wifi
+        $DMSCRIPTS/wifi
         return
         ;;
     "bluetooth")
-        /bin/sh -c $DMSCRIPTS_DIR/dmenuscripts/bluetooth 
+        $DMSCRIPTS/bluetooth 
         return
         ;;
     "clipboard")
-        /bin/sh -c $DMSCRIPTS_DIR/dmenuscripts/clipboard
+        $DMSCRIPTS/clipboard
         return
         ;;
     "clear-clipboard")
-        /bin/sh -c $DMSCRIPTS_DIR/dmenuscripts/clear-clipboard
+        $DMSCRIPTS/clear-clipboard
+        return
+        ;;
+    "lock")
+        $CMD slock
+        return
+        ;;
+    "sleep")
+        systemctl suspend
+        $CMD slock
+        return
+        ;;
+    "shutdown")
+        $CMD shutdown -p now
+        return
+        ;;
+    "restart")
+        $CMD shutdown -r now
         return
         ;;
     *)

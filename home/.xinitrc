@@ -1,3 +1,4 @@
 setxkbmap -option caps:escape_shifted_capslock
 xcompmgr -c &
+clipmenud &
 exec dwm
