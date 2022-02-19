@@ -5,7 +5,7 @@ NVIM_ROOT="$HOME/.config/nvim"
 
 neovim () {
     # clang
-    mv $HOME/.clang-format $HOME.clang-format.BakJalupa
+    mv $HOME/.clang-format $HOME/.clang-format.BakJalupa
     ln -s $DOTFILES_ROOT/home/.clang-format $HOME/
 
     # coc settings
