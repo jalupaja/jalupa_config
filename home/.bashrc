@@ -149,13 +149,23 @@ alias ffs="firefox -p social &"
 alias ffr="firefox -p research &"
 alias ffp="firefox -p shopping &"
 
-#other stuff
-alias neofetch="neofetch --source /home/jakob/Pictures/ascii-Art/thing.txt --ascii_colors 208"
-alias vi="vim"
+#ls stuff
 alias la="ls -la"
 alias ll="ls -l"
-alias pss="ps -aux | grep "
 alias lg="ls -la | grep "
+
+#cd stuff
+alias rep="cd $HOME/repos/"
+alias repo="cd $HOME/repos/own/"
+alias repu="cd $HOME/repos/utils/"
+alias dot="cd $HOME/.config/jalupa_config/"
+alias ..="cd .."
+alias ...="cd ../.."
+
+#other aplications
+alias neofetch="neofetch --source /home/jakob/Pictures/ascii-Art/thing.txt --ascii_colors 208"
+alias vi="vim"
+alias pss="ps -aux | grep "
 alias mpvv="mpv $1 --player-operation-mode=pseudo-gui"
 alias lf="ranger"
 
@@ -164,3 +174,4 @@ source ~/.config/lsx/lsx.sh
 
 #dmenu
 alias dmenu_run="dmenu_run -l 12 -i"
+
