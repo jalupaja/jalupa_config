@@ -2,6 +2,7 @@
 
 DMENU="dmenu -l 12 -i"
 CMD="/bin/sh -c $1"
+DMSCRIPTS_DIR="$HOME/.config/jalupa_dotfiles/dmenuscripts"
 
 menu() {
     printf "dmenu\n"
@@ -43,6 +44,8 @@ menu() {
     printf "kernel\n"
     printf "wifi\n"
     printf "bluetooth\n"
+    printf "clipboard\n"
+    printf "clear-clipboard\n"
 }
 
 choice=$(menu | $DMENU ) || exit
@@ -53,7 +56,7 @@ case $choice in
         return
         ;;
     "kill")
-        /bin/sh -c ~/.config/jalupa_dotfiles/dmenuscripts/kill
+        /bin/sh -c $DMSCRIPTS_DIR/dmenuscripts/kill
         return
         ;;
     "firefox")
@@ -193,11 +196,19 @@ case $choice in
         return
         ;;
     "wifi")
-        /bin/sh -c ~/.config/jalupa_dotfiles/dmenuscripts/wifi
+        /bin/sh -c $DMSCRIPTS_DIR/dmenuscripts/wifi
         return
         ;;
     "bluetooth")
-        /bin/sh -c ~/.config/jalupa_dotfiles/dmenuscripts/bluetooth 
+        /bin/sh -c $DMSCRIPTS_DIR/dmenuscripts/bluetooth 
+        return
+        ;;
+    "clipboard")
+        /bin/sh -c $DMSCRIPTS_DIR/dmenuscripts/clipboard
+        return
+        ;;
+    "clear-clipboard")
+        /bin/sh -c $DMSCRIPTS_DIR/dmenuscripts/clear-clipboard
         return
         ;;
     *)

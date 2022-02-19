@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#
+# this script clears the clipboard, provieded by https://github.com/cdown/clipmenu
+
+: "${CM_DIR="${XDG_RUNTIME_DIR-"${TMPDIR-/tmp}"}"}"
+
+major_version=6
+
+cache_dir=$CM_DIR/clipmenu.$major_version.$USER
+
+rm $cache_dir/*
