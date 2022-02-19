@@ -2,10 +2,11 @@
 
 DMENU="dmenu -l 12 -i"
 CMD="/bin/sh -c $1"
-DMSCRIPTS="/bin/sh -c $HOME/.config/jalupa_dotfiles/dmenuscripts"
+DMSCRIPTS="/bin/sh -c $(pwd -P)"
 
 menu () {
     printf "dmenu\n"
+    printf "todo\n"
     printf "kill\n"
     printf "firefox\n"
     printf "st\n"
@@ -55,8 +56,16 @@ menu () {
 choice=$(menu | $DMENU ) || exit
 
 case $choice in
+    *\!) 
+        $CMD "$(printf "%s" "${choice}" | cut -d'!' -f1)" # by https://tools.suckless.org/dmenu/scripts/dmenu_run_i
+        return
+        ;;
     "dmenu")
         dmenu_path | $DMENU "$@" | ${SHELL:-"/bin/sh"}
+        return
+        ;;
+    "todo")
+        $DMSCRIPTS/todo
         return
         ;;
     "kill")
