@@ -1,0 +1,32 @@
+#!/usr/bin/sh
+#
+# This script is copied from https://github.com/GeorgiChalakov01/wifi-control
+# and has been edited to work for me
+#
+
+case $(echo "CONNECT\nDISCONNECT\nWIFI ON\nWIFI OFF" | dmenu -i -p "WIFI Options: " -l 4;) in
+	CONNECT)
+		wifiname=$(nmcli d wifi list | dmenu -i -p "Select WIFI" -l 20 | cut -d' ' -f9);
+        if [ -n "$wifiname" ]; then
+            nmcli d wifi connect $wifiname
+            #pass=$(echo | dmenu -p "Password: " -i);
+            #nmcli d wifi connect $wifiname password $pass;
+        fi
+        return
+		;;
+	DISCONNECT)
+		internet=$(nmcli | grep "connected" | sed -n '1p' | cut -c 22-);
+		nmcli con down id $internet;
+        return
+		;;
+	"WIFI ON")
+		nmcli radio wifi on;
+        return
+		;;
+	"WIFI OFF")
+		nmcli radio wifi off;
+		;;
+    *)
+        echo "idk what happend. terminating..." && exit 0
+        ;;
+esac

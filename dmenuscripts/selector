@@ -1,0 +1,206 @@
+#!/bin/sh
+
+DMENU="dmenu -l 12 -i"
+CMD="/bin/sh -c $1"
+
+menu() {
+    printf "dmenu\n"
+    printf "kill\n"
+    printf "firefox\n"
+    printf "st\n"
+    printf "mpv\n"
+    printf "vlc\n"
+    printf "signal\n"
+    printf "tutanota\n"
+    printf "element\n"
+    printf "bitwarden\n"
+    printf "keepassxc\n"
+    printf "veracrypt\n"
+    printf "clementine\n"
+    printf "spotify\n"
+    printf "okular (pdf viewer)\n"
+    printf "onlyoffic\n"
+    printf "xournal++\n"
+    printf "krita\n"
+    printf "protonvpn\n"
+    printf "riseupvpn\n"
+    printf "brave\n"
+    printf "librewolf\n"
+    printf "tor browser\n"
+    printf "onionshare\n"
+    printf "vscodium\n"
+    printf "bleachbit\n"
+    printf "calculator\n"
+    printf "camera\n"
+    printf "dolphin (file manager)\n"
+    printf "kate (file viewer)\n"
+    printf "firefox research\n"
+    printf "firefox social\n"
+    printf "firefox shopping\n"
+    printf "virtualbox\n"
+    printf "manjaro settings\n"
+    printf "manjaro settings manager\n"
+    printf "kernel\n"
+    printf "wifi\n"
+    printf "bluetooth\n"
+}
+
+choice=$(menu | $DMENU ) || exit
+
+case $choice in
+    "dmenu")
+        dmenu_path | $DMENU "$@" | ${SHELL:-"/bin/sh"}
+        return
+        ;;
+    "kill")
+        /bin/sh -c ~/.config/jalupa_dotfiles/dmenuscripts/kill
+        return
+        ;;
+    "firefox")
+        $CMD firefox
+        return
+        ;;
+    "firefox research")
+        $CMD "firefox -p research"
+        return
+        ;;
+    "firefox social")
+        $CMD "firefox -p social"
+        return
+        ;;
+    "firefox shopping")
+        $CMD "firefox -p shopping"
+        return
+        ;;
+    "tor browser")
+        $CMD torbrowser-launcher
+        return
+        ;;
+    "librewolf")
+        $CMD librewolf
+        return
+        ;;
+    "brave")
+        $CMD brave
+        return
+        ;;
+    "st")
+        $CMD st
+        return
+        ;;
+    "mpv")
+        $CMD "mpv --player-operation-mode=pseudo-gui"
+        return
+        ;;
+    "vlc")
+        $CMD vlc
+        return
+        ;;
+    "signal")
+        $CMD signal-desktop
+        return
+        ;;
+    "element")
+        $CMD element-desktop
+        return
+        ;;
+    "tutanota")
+        $CMD tutanota-desktop
+        return
+        ;;
+    "bitwarden")
+        $CMD bitwarden-desktop
+        return
+        ;;
+    "keepassxc")
+        $CMD keepassxc
+        return
+        ;;
+    "veracrypt")
+        $CMD veracrypt
+        return
+        ;;
+    "protonvpn")
+        $CMD protonvpn
+        return
+        ;;
+    "riseupvpn")
+        $CMD riseup-vpn
+        return
+        ;;
+    "onionshare")
+        $CMD onionshare
+        return
+        ;;
+    "clementin (music manager)")
+        $CMD clemetine
+        return
+        ;;
+    "spotify")
+        $CMD spotify
+        return
+        ;;
+    "vscodium")
+        $CMD vscodium
+        return
+        ;;
+    "okular (pdf viewer)")
+        $CMD okular
+        return
+        ;;
+    "onlyoffice")
+        $CMD onlyoffice
+        return
+        ;;
+    "xournal++")
+        $CMD xournalpp
+        return
+        ;;
+    "krita")
+        $CMD krita
+        return
+        ;;
+    "calculator")
+        $CMD kcalc
+        return
+        ;;
+    "camera")
+        $CMD deepin-camera
+        return
+        ;;
+    "dolphin (file manager)")
+        $CMD dolphin
+        return
+        ;;
+    "kate (file viewer)")
+        $CMD kate
+        return
+        ;;
+    "virtualbox")
+        $CMD VirtualBox
+        return
+        ;;
+    "manjaro settings")
+        $CMD systemsettings5
+        return
+        ;;
+    "manjaro settings manager")
+        $CMD manjaro-settings-manager
+        return
+        ;;
+    "kernel")
+        $CMD manjaro-settings-manager
+        return
+        ;;
+    "wifi")
+        /bin/sh -c ~/.config/jalupa_dotfiles/dmenuscripts/wifi
+        return
+        ;;
+    "bluetooth")
+        /bin/sh -c ~/.config/jalupa_dotfiles/dmenuscripts/bluetooth 
+        return
+        ;;
+    *)
+        echo "idk what happend. terminating..." && exit 0
+        ;;
+esac

@@ -1,0 +1,24 @@
+TODO:
+    change indent of C/Cpp files to 4
+
+
+filemanager: space+m
+
+format file or selection: space+f
+
+find definition: space+i
+
+build file: space+b
+run file: space+r
+
+autocomplete next: Ctrl+n
+autocomplete previous: Ctrl+p
+
+switch to/from header: space+h
+
+search and open for file: Ctrl-p
+
+move to below tab: space+j
+move to above tab: space+k
+move to tab on the left: space+h
+move to tab on the right: space+l
