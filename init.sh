@@ -2,42 +2,41 @@
 
 DOTFILES_ROOT=$(pwd -P)
 NVIM_ROOT="$HOME/.config/nvim"
-BAK="mv $1 $1.beforeJALUPA"
 
 neovim () {
     # clang
-    $BAK $HOME/.clang-format
+    mv $HOME/.clang-format $HOME.clang-format.BakJalupa
     ln -s $DOTFILES_ROOT/home/.clang-format $HOME/
 
     # coc settings
-    $BAK $NVIM_ROOT/coc-settings.json
+    mv $NVIM_ROOT/coc-settings.json $NVIM_ROOT/coc-settings.json.BakJalupa
     ln -s $DOTFILES_ROOT/neovim/coc-settings.json $NVIM_ROOT/coc-settings.json
 
     #tasks file
-    $BAK $NVIM_ROOT/tasks.ini
+    mv $NVIM_ROOT/tasks.ini $NVIM_ROOT/tasks.ini.BakJalupa
     ln -s $DOTFILES_ROOT/neovim/tasks.ini $NVIM_ROOT/tasks.ini
 
     #init.vim file
-    $BAK $NVIM_ROOT/init.vim
+    mv $NVIM_ROOT/init.vim $NVIM_ROOT/init.vim.BakJalupa
     ln -s $DOTFILES_ROOT/neovim/init.vim $NVIM_ROOT/init.vim
 }
 
 vim () {
-    $BAK $HOME/.vimrc
+    mv $HOME/.vimrc $HOME/.vimrc.BakJalupa
     ln -s $DOTFILES_ROOT/home/.vimrc $HOME/.vimrc
 }
 
 bash () {
-    $BAK $HOME/.bashrc
+    mv $HOME/.bashrc $HOME/.bashrc.BakJalupa
     ln -s $DOTFILES_ROOT/home/.bashrc $HOME/.bashrc
 }
 
 xorg () {
-    $BAK $HOME/.xinitrc
+    mv $HOME/.xinitrc $HOME/.xinitrc.BakJalupa
     ln -s $DOTFILES_ROOT/home/.xinitrc $HOME/.xinitrc
 }
 
-nvim
+neovim
 vim
 bash
 #xorg
