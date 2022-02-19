@@ -2,7 +2,7 @@
 
 DMENU="dmenu -l 12 -i"
 CMD="/bin/sh -c $1"
-DMSCRIPTS="/bin/sh -c $(pwd -P)"
+DMSCRIPTS="/bin/sh -c $HOME/.config/jalupa_config/dmenuscripts"
 
 menu () {
     printf "dmenu\n"
