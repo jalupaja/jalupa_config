@@ -234,11 +234,11 @@ case $choice in
         return
         ;;
     "shutdown")
-        $CMD shutdown -p now
+        systemctl poweroff
         return
         ;;
     "restart")
-        $CMD shutdown -r now
+        systemctl reboot
         return
         ;;
     *)

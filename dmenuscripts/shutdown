@@ -27,11 +27,11 @@ case $choice in
         return
         ;;
     "shutdown")
-        shutdown -p now
+        systemctl poweroff
         return
         ;;
     "restart")
-        shutdown -r now
+        systemctl reboot
         return
         ;;
     *)
