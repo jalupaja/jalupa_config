@@ -36,6 +36,9 @@ case "$1" in
             fi
         fi
         ;;
+    "-s")
+        value=$2
+        ;;
     *)
         value=$(echo "$levels" | $DMENU " $current ")
         ;;
