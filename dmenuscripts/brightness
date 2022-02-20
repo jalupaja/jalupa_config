@@ -48,4 +48,5 @@ if [ -n "$value" ]; then
     if [ "$value" -le "100" ]; then
         echo $(($value * $step)) > /sys/class/backlight/intel_backlight/brightness
     fi
+    notify-send -a "brightness control" -t 1250 "set brightness to $value"
 fi
