@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# the user has to be inside of the "video" group to not need sudo!
+
+DMENU="dmenu -l 5 -p"
+
+levels="0
+5
+20
+60
+99"
+
+step=$(($(cat /sys/class/backlight/intel_backlight/max_brightness) / 100))
+value=$(echo "$levels" | $DMENU " $(($(cat /sys/class/backlight/intel_backlight/brightness) / $step)) ")
+
+if [ -n "$value" ]; then
+    if [ "$value" -le "100" ]; then
+        echo $(($value * $step)) > /sys/class/backlight/intel_backlight/brightness
+    fi
+fi

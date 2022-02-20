@@ -47,6 +47,7 @@ menu () {
     printf "bluetooth\n"
     printf "clipboard\n"
     printf "clear-clipboard\n"
+    printf "brightness\n"
     printf "lock\n"
     printf "sleep\n"
     printf "shutdown\n"
@@ -222,6 +223,10 @@ case $choice in
         ;;
     "clear-clipboard")
         $DMSCRIPTS/clear-clipboard
+        return
+        ;;
+    "brightness")
+        $DMSCRIPTS/brightness
         return
         ;;
     "lock")
