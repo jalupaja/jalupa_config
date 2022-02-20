@@ -3,7 +3,7 @@
 DOTFILES_ROOT=$(pwd -P)
 NVIM_ROOT="$HOME/.config/nvim"
 
-neovim () {
+instNeovim () {
     # clang
     mv $HOME/.clang-format $HOME/.clang-format.BakJalupa
     ln -s $DOTFILES_ROOT/home/.clang-format $HOME/
@@ -21,22 +21,29 @@ neovim () {
     ln -s $DOTFILES_ROOT/neovim/init.vim $NVIM_ROOT/init.vim
 }
 
-vim () {
+instVim () {
     mv $HOME/.vimrc $HOME/.vimrc.BakJalupa
     ln -s $DOTFILES_ROOT/home/.vimrc $HOME/.vimrc
 }
 
-bash () {
+instBash () {
     mv $HOME/.bashrc $HOME/.bashrc.BakJalupa
     ln -s $DOTFILES_ROOT/home/.bashrc $HOME/.bashrc
 }
 
-xorg () {
+instXorg () {
     mv $HOME/.xinitrc $HOME/.xinitrc.BakJalupa
-    ln -s $DOTFILES_ROOT/home/.xinitrc $HOME/.xinitrc
+    cp $DOTFILES_ROOT/home/.xinitrc $HOME/.xinitrc
 }
 
-neovim
-vim
-bash
-#xorg
+instDunst () {
+    mv $HOME/.config/dunst/dunstrc $HOME/.config/dunst/dunstrc.BakJalupa
+    mkdir $HOME/.config/dunst
+    ln -s $DOTFILES_ROOT/dunst/dunstrc $HOME/.config/dunst/dunstrc
+}
+
+instNeovim
+instVim
+instBash
+#instXorg
+#instDunst
