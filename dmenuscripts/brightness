@@ -11,7 +11,36 @@ levels="0
 99"
 
 step=$(($(cat /sys/class/backlight/intel_backlight/max_brightness) / 100))
-value=$(echo "$levels" | $DMENU " $(($(cat /sys/class/backlight/intel_backlight/brightness) / $step)) ")
+current=$(($(cat /sys/class/backlight/intel_backlight/brightness) / $step))
+value=0
+echo $1
+case "$1" in
+    "-i") 
+        if [ "$current" -eq "1" ]; then
+            value=5
+        else
+            if [ "$(($current + 5))" -gt "100" ]; then
+                value=100
+            else
+                value=$(($current + 5))
+            fi
+        fi
+        ;;
+    "-d")
+        if [ "$current" -eq "1" ]; then
+            value=0
+        else
+            if [ "$(($current - 5))" -lt "1" ]; then
+                value=1
+            else
+                value=$(($current - 5))
+            fi
+        fi
+        ;;
+    *)
+        value=$(echo "$levels" | $DMENU " $current ")
+        ;;
+esac
 
 if [ -n "$value" ]; then
     if [ "$value" -le "100" ]; then
