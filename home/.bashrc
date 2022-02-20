@@ -159,6 +159,8 @@ alias rep="cd $HOME/repos/"
 alias repo="cd $HOME/repos/own/"
 alias repu="cd $HOME/repos/utils/"
 alias dot="cd $HOME/.config/jalupa_config/"
+alias dwnl="cd $HOME/Downloads/"
+alias doc="cd $HOME/Documents/"
 alias ..="cd .."
 alias ...="cd ../.."
 
