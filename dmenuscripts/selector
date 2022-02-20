@@ -48,6 +48,7 @@ menu () {
     printf "clipboard\n"
     printf "clear-clipboard\n"
     printf "brightness\n"
+    printf "volume\n"
     printf "lock\n"
     printf "sleep\n"
     printf "shutdown\n"
@@ -227,6 +228,10 @@ case $choice in
         ;;
     "brightness")
         $DMSCRIPTS/brightness
+        return
+        ;;
+    "volume")
+        $DMSCRIPTS/volume
         return
         ;;
     "lock")

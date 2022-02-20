@@ -1,0 +1,51 @@
+#!/bin/sh
+
+
+DMENU="dmenu -l 5 -p"
+
+levels="5
+15
+50
+70
+99"
+
+current=$(amixer sget Master | awk -F "[][]" '/Left:/ { print $2 }')
+
+end () {
+    notify-send -a "volume" "set volume to $(awk -F"[][]" '/Left:/ { print $2  }' <$(amixer sget Master)) [$(awk -F"[][]" '/Left:/ { print $4  }' <$(amixer sget Master))]"
+    exit 0
+}
+
+getopts "idtms:" flag
+case "${flag}" in
+    i) #increase
+        amixer set Master 5%+
+        end
+        ;;
+    d) #decrease
+        amixer set Master 5%-
+        end
+        ;;
+    t) #toggle
+        amixer set Master toggle
+        end
+        ;;
+    m) #toggle mute
+        amixer set Capture toggle
+    notify-send -a "volume" "set microphone to $(awk -F"[][]" '/Left:/ { print $4  }' <$(amixer sget Capture)) [$(awk -F"[][]" '/Left:/ { print $2  }' <$(amixer sget Capture))]"
+        exit 0
+        ;;
+    s) #set
+        amixer set Master $OPTARG%
+        end
+        ;;
+    :)
+        value=$(echo "$levels" | $DMENU " $current ")
+        amixer set Master $value%
+        end
+        ;;
+esac
+
+value=$(echo "$levels" | $DMENU " $current ")
+amixer set Master $value%
+end
