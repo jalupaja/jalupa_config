@@ -12,8 +12,7 @@ levels="0
 
 step=$(($(cat /sys/class/backlight/intel_backlight/max_brightness) / 100))
 current=$(($(cat /sys/class/backlight/intel_backlight/brightness) / $step))
-value=0
-echo $1
+
 case "$1" in
     "-i") 
         if [ "$current" -eq "1" ]; then
