@@ -36,6 +36,11 @@ instXorg () {
     cp $DOTFILES_ROOT/home/.xinitrc $HOME/.xinitrc
 }
 
+instPicom () {
+    mv $HOME/.config/picom.conf $HOME/.config/picom.conf.BakJalupa
+    ln -s $DOTFILES_ROOT/other_config_stuff/picom.conf $HOME/.config/picom.conf
+}
+
 instDunst () {
     mv $HOME/.config/dunst/dunstrc $HOME/.config/dunst/dunstrc.BakJalupa
     mkdir $HOME/.config/dunst
