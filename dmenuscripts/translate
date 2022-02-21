@@ -71,6 +71,9 @@ main() {
 
   # Get text to translate and url encode 
   query=$(echo "" | ${DMENU} "Translate (${from_code} -> ${to_code}):")
+  if [[ "$query" == "c" ]]; then
+      query=$(xclip -o)
+  fi
   query="$(echo "${query}" | jq -s -R -r @uri)"
 
   declare -A translate_query translate_query_jq translate_method
