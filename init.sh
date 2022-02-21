@@ -51,4 +51,5 @@ instNeovim
 instVim
 instBash
 #instXorg
+#instPicom
 #instDunst
