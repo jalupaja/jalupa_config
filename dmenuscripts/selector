@@ -52,6 +52,8 @@ menu () {
     printf "shutdown\n"
     printf "restart\n"
     printf "picom\n"
+
+    printf "translate\n"
 }
 
 choice=$(menu | $DMENU ) || exit
@@ -252,6 +254,10 @@ case $choice in
         ;;
     "picom")
         $DMSCRIPTS/picom
+        return
+        ;;
+    "translate")
+        $DMSCRIPTS/translate
         return
         ;;
     *)
