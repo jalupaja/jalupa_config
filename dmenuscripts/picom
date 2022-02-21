@@ -1,0 +1,28 @@
+#!/bin/sh
+
+DMENU="dmenu -l 4 -i"
+cd $HOME/.config/jalupa_config/picom
+
+options="start
+kill
+use blur
+use transparency"
+
+choice=$(echo "$options" | $DMENU)
+
+case "${choice}" in
+    "start")
+        /bin/sh -c "picom --experimental-backends &"
+        ;;
+    "kill")
+        killall picom
+        ;;
+    "use blur")
+        cp -f picom.blur picom.conf
+        ;;
+    "use transparency")
+        cp -f picom.transparent picom.conf
+        ;;
+    *)
+        ;;
+esac

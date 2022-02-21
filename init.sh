@@ -38,7 +38,7 @@ instXorg () {
 
 instPicom () {
     mv $HOME/.config/picom.conf $HOME/.config/picom.conf.BakJalupa
-    ln -s $DOTFILES_ROOT/other_config_stuff/picom.conf $HOME/.config/picom.conf
+    ln -s $DOTFILES_ROOT/picom/picom.conf $HOME/.config/picom.conf
 }
 
 instDunst () {

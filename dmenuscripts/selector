@@ -251,7 +251,7 @@ case $choice in
         return
         ;;
     "picom")
-        $CMD "picom --experimental-backends &"
+        $DMSCRIPTS/picom
         return
         ;;
     *)
