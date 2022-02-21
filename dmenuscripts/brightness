@@ -18,50 +18,49 @@ end () {
         if [ "$value" -le "100" ]; then
             echo $(($value * $step)) > /sys/class/backlight/intel_backlight/brightness
         fi
-        notify-send -a "brightness control" -t 1250 "set brightness to $value"
+        notify-send -a "brightness" "set brightness to $value"
     fi
     exit 0
 }
 
-while getopts "ids:" flag
-do
-    case "${flag}" in
-        i) 
-            if [ "$current" -eq "1" ]; then
-                value=5
+getopts "ids:" flag
+case "${flag}" in
+    i) 
+        if [ "$current" -eq "1" ]; then
+            value=5
+        else
+            if [ "$(($current + 5))" -gt "100" ]; then
+                value=100
             else
-                if [ "$(($current + 5))" -gt "100" ]; then
-                    value=100
-                else
-                    value=$(($current + 5))
-                fi
+                value=$(($current + 5))
             fi
-            end
-            ;;
-        d)
-            if [ "$current" -eq "1" ]; then
-                value=0
+        fi
+        end
+        ;;
+    d)
+        if [ "$current" -eq "1" ]; then
+            value=0
+        else
+            if [ "$(($current - 5))" -lt "1" ]; then
+                value=1
             else
-                if [ "$(($current - 5))" -lt "1" ]; then
-                    value=1
-                else
-                    value=$(($current - 5))
-                fi
+                value=$(($current - 5))
             fi
+        fi
+        end
+        ;;
+    s)
+        if [ -n "$OPTARG" ]; then 
+            value=$OPTARG
             end
-            ;;
-        s)
-            if [ -n "$OPTARG" ]; then 
-                value=$OPTARG
-                end
-            fi
-            exit 1
-            ;;
-        :)
-            value=$(echo "$levels" | $DMENU " $current ")
-            end
-            ;;
-    esac
-done
+        fi
+        exit 1
+        ;;
+    :)
+        value=$(echo "$levels" | $DMENU " $current ")
+        end
+        ;;
+esac
+
 value=$(echo "$levels" | $DMENU " $current ")
 end
