@@ -109,6 +109,7 @@ let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#right_alt_sep = ''
 let g:airline#extensions#tabline#formatter = 'default'
 colorscheme srcery
+hi Normal guibg=NONE ctermbg=NONE " remove background
 
 " -----------------------
 "  remap keys

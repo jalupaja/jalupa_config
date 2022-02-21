@@ -20,9 +20,7 @@ menu () {
     printf "veracrypt\n"
     printf "clementine\n"
     printf "spotify\n"
-    printf "okular (pdf viewer)\n"
-    printf "onlyoffic\n"
-    printf "xournal++\n"
+    printf "okular (pdf viewer)\n" printf "onlyoffic\n" printf "xournal++\n"
     printf "krita\n"
     printf "protonvpn\n"
     printf "riseupvpn\n"
@@ -53,6 +51,7 @@ menu () {
     printf "sleep\n"
     printf "shutdown\n"
     printf "restart\n"
+    printf "picom\n"
 }
 
 choice=$(menu | $DMENU ) || exit
@@ -249,6 +248,10 @@ case $choice in
         ;;
     "restart")
         systemctl reboot
+        return
+        ;;
+    "picom")
+        $CMD "picom --experimental-backends &"
         return
         ;;
     *)

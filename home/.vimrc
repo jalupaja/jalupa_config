@@ -19,6 +19,7 @@ Plug 'scrooloose/nerdcommenter'     " commend Keybindings
 Plug 'jiangmiao/auto-pairs'         " automatic brackets
 Plug 'ctrlpvim/ctrlp.vim'           " File Search via CTRL-P
 Plug 'sbdchd/neoformat'             " auto formatter
+Plug 'jacoborus/tender.vim'         " colorscheme
 
 " ---
 call plug#end()
@@ -29,7 +30,7 @@ let mapleader=" "
 
 " -----------------------
 "  remap keys
-" :inoremap ii <Esc> " map ii in insertmode to Escape
+inoremap ii <Esc> " map ii in insertmode to Escape
 tnoremap <Esc> <C-\><C-n> " allow ESC in terminal mode
 vmap <Leader>y "+y " map copy to system clipboard
 nnoremap <Leader>k :wincmd k<CR>
@@ -37,3 +38,7 @@ nnoremap <Leader>j :wincmd j<CR>
 nnoremap <Leader>h :wincmd h<CR>
 nnoremap <Leader>l :wincmd l<CR>
 nnoremap <Leader>f :Neoformat<CR>
+
+" colorscheme
+colorscheme tender
+hi Normal guibg=NONE ctermbg=NONE
