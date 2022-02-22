@@ -175,5 +175,4 @@ alias lf="ranger"
 source ~/.config/lsx/lsx.sh
 
 #dmenu
-alias dmenu_run="dmenu_run -l 12 -i"
-
+alias dmenu_run="dmenu_run -l 12 -i "

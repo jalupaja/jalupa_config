@@ -7,12 +7,14 @@
 #
 # by https://tools.suckless.org/dmenu/scripts/todo
 
+DMENU="dmenu -F "
+
 file="$HOME/.todo"
 touch "$file"
 height=$(wc -l "$file" | awk '{print $1}')
 prompt="Add/delete a task: "
 
-cmd=$(dmenu -F -l "$height" -p "$prompt" "$@" < "$file")
+cmd=$($DMENU -l "$height" -p "$prompt" "$@" < "$file")
 while [ -n "$cmd" ]; do
  	if grep -q "^$cmd\$" "$file"; then
 		grep -v "^$cmd\$" "$file" > "$file.$$"
@@ -23,7 +25,7 @@ while [ -n "$cmd" ]; do
 		height=$(( height + 1 ))
  	fi
 
-	cmd=$(dmenu -F -l "$height" -p "$prompt" "$@" < "$file")
+	cmd=$($DMENU -l "$height" -p "$prompt" "$@" < "$file")
 done
 
 exit 0
