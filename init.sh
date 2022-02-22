@@ -31,6 +31,11 @@ instBash () {
     ln -s $DOTFILES_ROOT/home/.bashrc $HOME/.bashrc
 }
 
+instZsh () {
+    mv $HOME/.zshrc $HOME/.zshrc.BakJalupa
+    ln -s $DOTFILES_ROOT/home/.zshrc $HOME/.zshrc
+}
+
 instStarship () {
     mv $HOME/.config/starship.toml $HOME/.config/starship.toml.BakJalupa
     ln -s $DOTFILES_ROOT/starship/starship.toml $HOME/.config/starship.toml
@@ -54,7 +59,10 @@ instDunst () {
 
 instNeovim
 instVim
-instBash
+
+#instBash
+instZsh
+
 #instStarship
 #instXorg
 #instPicom
