@@ -1,13 +1,35 @@
 #
 # ~/.bashrc
 #
+[[ $- != *i*  ]] && return
 
-if [ $? -eq 0 ]; then # xcript to autostart onefetch when entering a new repo; by Quazear_omeage on: https://reddit.com/r/unixporn/comments/sxa02o/oc_neofetch_for_git_repositories
-    if [ "$LAST_REPO" != $(basename $(git rev-parse --show-toplevel))  ]; then
-        onefetch
-        LAST_REPO=$(basename $(git rev-parse --show-toplevel))
+
+use_color=true
+
+shopt -s autocd
+shopt -s cdspell
+shopt -s cmdhist
+shopt -s histappend
+shopt -s expand_aliases
+shopt -s checkwinsize
+
+#ignore case on TAB completion
+bind "set completion-ignore-case on"
+
+#xcript to autostart onefetch when entering a new repo
+LAST_REPO="" #by Quazear_omeage on: https://reddit.com/r/unixporn/comments/sxa02o/oc_neofetch_for_git_repositories
+cd() {
+    builtin cd "$@"
+    git rev-parse 2>/dev/null
+    if [ $? -eq 0 ]; then
+        if [ "$LAST_REPO" != $(basename $(git rev-parse --show-toplevel)) ]; then
+            printf "\033c"
+            echo ""
+            onefetch
+            LAST_REPO=$(basename $(git rev-parse --show-toplevel))
+        fi
     fi
-fi
+}
 
 ###############################3
 
@@ -23,10 +45,16 @@ alias ffr="firefox -p research &"
 alias ffp="firefox -p shopping &"
 
 #ls stuff
-alia ls='ls --color=auto'
+alias ls='ls --color=auto'
 alias la="ls -la"
 alias ll="ls -l"
 alias lg="ls -la | grep "
+
+#replace ls with exa
+alias ls="exa --color=always --group-directories-first"
+alias ll="exa -l --color=always --group-directories-first"
+alias la="exa -la --color=always --group-directories-first"
+alias lg="exa -la --color=always --group-directories-first | grep"
 
 #cd stuff
 alias rep="cd $HOME/repos/"
@@ -37,6 +65,10 @@ alias dwnl="cd $HOME/Downloads/"
 alias doc="cd $HOME/Documents/"
 alias ..="cd .."
 alias ...="cd ../.."
+
+#moving stuff
+alias cp="cp -i"
+alias mv="mv -i"
 
 #other aplications
 alias neofetch="neofetch --source /home/jakob/Pictures/ascii-Art/thing.txt --ascii_colors 208"
@@ -51,3 +83,8 @@ source ~/.config/lsx/lsx.sh
 
 #dmenu
 alias dmenu_run="dmenu_run -l 12 -i "
+
+####################################
+
+# setup starship prompt (install: sh -c "$(curl -fsSL https://starship.rs/install.sh)")
+eval "$(starship init bash)"

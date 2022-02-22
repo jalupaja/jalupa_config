@@ -31,6 +31,11 @@ instBash () {
     ln -s $DOTFILES_ROOT/home/.bashrc $HOME/.bashrc
 }
 
+instStarship () {
+    mv $HOME/.config/starship.toml $HOME/.config/starship.toml.BakJalupa
+    ln -s $DOTFILES_ROOT/starship/starship.toml $HOME/.config/starship.toml
+}
+
 instXorg () {
     mv $HOME/.xinitrc $HOME/.xinitrc.BakJalupa
     cp $DOTFILES_ROOT/home/.xinitrc $HOME/.xinitrc
@@ -50,6 +55,7 @@ instDunst () {
 instNeovim
 instVim
 instBash
+#instStarship
 #instXorg
 #instPicom
 #instDunst

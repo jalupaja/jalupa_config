@@ -1,0 +1,26 @@
+add_newline = false
+
+[line_break]
+disabled = true
+
+[package]
+disabled = true
+
+[git_branch]
+style = "bold purple"
+format = "[$symbol$branch]($style)"
+
+[git_commit]
+disabled = true
+
+[git_state]
+disabled = true
+
+[git_metrics]
+disabled = true
+
+[git_status]
+disabled = true
+
+[cmd_duration]
+format = " [$duration]($style)"
