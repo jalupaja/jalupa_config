@@ -64,6 +64,7 @@ alias mv="mv -i"
 alias gits="git status"
 alias gita="git add"
 alias gitc="git commit -m"
+alias gitp="git push"
 
 #Firefox stuff
 alias ff="firefox"
