@@ -1,7 +1,7 @@
 #!/bin/sh
 
 DMENU="dmenu -l 12 -i"
-CMD="/bin/sh -c $1"
+CMD="/bin/bash -c $1"
 DMSCRIPTS="/bin/sh -c $HOME/.config/jalupa_config/dmenuscripts"
 
 menu () {
