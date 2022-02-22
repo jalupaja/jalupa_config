@@ -26,6 +26,8 @@ cd() {
             printf "\033c"
             echo ""
             onefetch
+            exa --color=always --group-directories-first
+            echo ""
             LAST_REPO=$(basename $(git rev-parse --show-toplevel))
         fi
     fi
@@ -35,20 +37,8 @@ cd() {
 
 #environment variables
 export EDITOR=/usr/bin/vim
-export GOPATH=$HOME/go #lex stuff
+export GOPATH=$HOME/go #lsx stuff
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin #lsx stuff
-
-#Firefox stuff
-alias ff="firefox"
-alias ffs="firefox -p social &"
-alias ffr="firefox -p research &"
-alias ffp="firefox -p shopping &"
-
-#ls stuff
-alias ls='ls --color=auto'
-alias la="ls -la"
-alias ll="ls -l"
-alias lg="ls -la | grep "
 
 #replace ls with exa
 alias ls="exa --color=always --group-directories-first"
@@ -70,6 +60,17 @@ alias ...="cd ../.."
 alias cp="cp -i"
 alias mv="mv -i"
 
+#git stuff
+alias gits="git status"
+alias gita="git add"
+alias gitc="git commit -m"
+
+#Firefox stuff
+alias ff="firefox"
+alias ffs="firefox -p social &"
+alias ffr="firefox -p research &"
+alias ffp="firefox -p shopping &"
+
 #other aplications
 alias neofetch="neofetch --source /home/jakob/Pictures/ascii-Art/thing.txt --ascii_colors 208"
 alias vi="vim"
@@ -77,6 +78,8 @@ alias pss="ps -aux | grep "
 alias mpvv="mpv $1 --player-operation-mode=pseudo-gui"
 alias lf="ranger"
 alias grep='grep --colour=auto'
+alias df='df -h'                                                # Human-readable sizes
+alias free='free -m'                                            # Show sizes in MB
 
 #lsx
 source ~/.config/lsx/lsx.sh
