@@ -2,7 +2,7 @@
 
 # the user has to be inside of the "video" group to not need sudo!
 
-dmenu="dmenu -l 5 -p"
+DMENU="dmenu -l 5 -p"
 
 levels="0
 5
