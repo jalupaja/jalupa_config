@@ -3,6 +3,8 @@ opacity-rule = [
     "100:class_g = 'firefox' && argb",
     "100:class_g = 'mpv'",
     "100:class_g = 'vlc'",
+    "100mp:class_g = 'Nsxiv'",
+    "100:class_g = 'slop'",
 ];
 focus-exclude = [
   "class_g = 'slop'"                    # maim
