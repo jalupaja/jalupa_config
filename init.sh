@@ -4,6 +4,7 @@ DOTFILES_ROOT=$(pwd -P)
 NVIM_ROOT="$HOME/.config/nvim"
 
 instNeovim () {
+    mkdir $HOME/.config/nvim
     # clang
     mv $HOME/.clang-format $HOME/.clang-format.BakJalupa
     ln -s $DOTFILES_ROOT/home/.clang-format $HOME/
