@@ -21,7 +21,7 @@ Plug 'ctrlpvim/ctrlp.vim'           " File Search via CTRL-P
 
 " --- color schemes
 Plug 'srcery-colors/srcery-vim'
-Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
 " ---
 
 Plug 'neoclide/coc.nvim', { 'branch': 'release' } " Syntax completion support
@@ -96,18 +96,21 @@ let g:asynctasks_term_pos = 'tab'
 let g:asyncrun_open = 10
 
 " -----------------------
-"  Colorscheme config: airline, srcery
+"  Colorscheme config: lightline, srcery
 set noshowmode      " remove -- INSERT --
 set termguicolors
 let g:srcery_italic = 1
-let g:airline#extensions#tabline#enabled= 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
-let g:airline#extensions#tabline#right_sep = ''
-let g:airline#extensions#tabline#right_alt_sep = ''
-let g:airline#extensions#tabline#formatter = 'default'
+let g:lightline = {
+            \ 'colorscheme': 'srcery',
+               \ 'active': {
+               \   'right': [ [ 'lineinfo' ],
+               \              [ 'percent' ],
+               \              [ 'fileformat', 'fileencoding' ] ]
+               \ },
+               \ 'component': {
+               \   'charvaluehex': '0x%B'
+               \ },
+               \ }
 colorscheme srcery
 hi Normal guibg=NONE ctermbg=NONE " remove background
 
