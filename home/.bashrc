@@ -17,8 +17,9 @@ shopt -s checkwinsize
 bind "set completion-ignore-case on"
 
 #xcript to autostart onefetch when entering a new repo
-LAST_REPO="" #by Quazear_omeage on: https://reddit.com/r/unixporn/comments/sxa02o/oc_neofetch_for_git_repositories
-cd() {
+
+LAST_REPO="" #xcript to autostart onefetch when entering a new repo
+cd() { #by Quazear_omeage on: https://reddit.com/r/unixporn/comments/sxa02o/oc_neofetch_for_git_repositories
     builtin cd "$@"
     git rev-parse 2>/dev/null
     if [ $? -eq 0 ]; then
@@ -26,11 +27,17 @@ cd() {
             printf "\033c"
             echo ""
             onefetch
-            exa --color=always --group-directories-first
-            echo ""
             LAST_REPO=$(basename $(git rev-parse --show-toplevel))
         fi
     fi
+    exa --color=always --group-directories-first
+    echo ""
+}
+
+clear() {
+    printf "\033c"
+    exa --color=always --group-directories-first
+    echo "" 
 }
 
 ###############################3
@@ -92,3 +99,16 @@ alias dmenu_run="dmenu_run -l 12 -i "
 
 # setup starship prompt (install: sh -c "$(curl -fsSL https://starship.rs/install.sh)")
 eval "$(starship init bash)"
+printf "\033c"
+printf '\033[0;33m'
+echo -e '
+    ___  ________  ___       ___  ___  ________  ________     
+   |\  \|\   __  \|\  \     |\  \|\  \|\   __  \|\   __  \    
+   \ \  \ \  \|\  \ \  \    \ \  \\\\\  \ \  \|\  \ \  \|\  \   
+ __ \ \  \ \   __  \ \  \    \ \  \\\\\  \ \   ____\ \   __  \  
+|\  \\\_\  \ \  \ \  \ \  \____\ \  \\\\\  \ \  \___|\ \  \ \  \ 
+\ \________\ \__\ \__\ \_______\ \_______\ \__\    \ \__\ \__\
+ \|________|\|__|\|__|\|_______|\|_______|\|__|     \|__|\|__|
+
+'
+
