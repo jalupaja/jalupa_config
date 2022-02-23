@@ -30,6 +30,7 @@ menu () {
     printf "librewolf\n"
     printf "tor browser\n"
     printf "onionshare\n"
+    printf "discord\n"
     printf "vscodium\n"
     printf "bleachbit\n"
     printf "calculator\n"
@@ -152,6 +153,10 @@ case $choice in
         ;;
     "onionshare")
         $CMD onionshare
+        return
+        ;;
+    "discord")
+        $CMD "firefox -p discord"
         return
         ;;
     "clementin (music manager)")
