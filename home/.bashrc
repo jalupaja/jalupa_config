@@ -44,8 +44,6 @@ clear() {
 
 #environment variables
 export EDITOR=/usr/bin/vim
-export GOPATH=$HOME/go #lsx stuff
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin #lsx stuff
 
 #replace ls with exa
 alias ls="exa --color=always --group-directories-first"
@@ -88,9 +86,6 @@ alias lf="ranger"
 alias grep='grep --colour=auto'
 alias df='df -h'                                                # Human-readable sizes
 alias free='free -m'                                            # Show sizes in MB
-
-#lsx
-source ~/.config/lsx/lsx.sh
 
 #dmenu
 alias dmenu_run="dmenu_run -l 12 -i "
