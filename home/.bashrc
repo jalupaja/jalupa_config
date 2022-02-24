@@ -18,8 +18,9 @@ bind "set completion-ignore-case on"
 
 #xcript to autostart onefetch when entering a new repo
 
-LAST_REPO="" #xcript to autostart onefetch when entering a new repo
-cd() { #by Quazear_omeage on: https://reddit.com/r/unixporn/comments/sxa02o/oc_neofetch_for_git_repositories
+LAST_REPO="" 
+cd() #script to autostart onefetch when entering a new repo
+{ #by Quazear_omeage on: https://reddit.com/r/unixporn/comments/sxa02o/oc_neofetch_for_git_repositories
     builtin cd "$@"
     git rev-parse 2>/dev/null
     if [ $? -eq 0 ]; then
@@ -30,14 +31,20 @@ cd() { #by Quazear_omeage on: https://reddit.com/r/unixporn/comments/sxa02o/oc_n
             LAST_REPO=$(basename $(git rev-parse --show-toplevel))
         fi
     fi
-    exa --color=always --group-directories-first
+    exa -D --color=always --group-directories-first
     echo ""
 }
 
-clear() {
+clear()
+{
     printf "\033c"
-    exa --color=always --group-directories-first
+    exa -D --color=always --group-directories-first
     echo "" 
+}
+
+calc()
+{
+    echo "$1" | bc
 }
 
 ###############################3

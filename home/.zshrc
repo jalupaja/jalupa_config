@@ -104,14 +104,18 @@ cd() { #by Quazear_omeage on: https://reddit.com/r/unixporn/comments/sxa02o/oc_n
             LAST_REPO=$(basename $(git rev-parse --show-toplevel))
         fi
     fi
-    exa --color=always --group-directories-first
+    exa -D --color=always --group-directories-first
     echo ""
 }
 
 clear() {
     printf "\033c"
-    exa --color=always --group-directories-first
+    exa -D --color=always --group-directories-first
     echo "" 
+}
+
+calc() {
+    echo "$1" | bc
 }
 
 ###############################3
@@ -123,7 +127,7 @@ export EDITOR=/usr/bin/vim
 alias ls="exa --color=always --group-directories-first"
 alias ll="exa -l --color=always --group-directories-first"
 alias la="exa -la --color=always --group-directories-first"
-alias lg="xa -la --color=always --group-directories-first | grep"
+alias lg="exa -la --color=always --group-directories-first | grep"
 
 #cd stuff
 alias rep="cd $HOME/repos/"
