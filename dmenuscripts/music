@@ -1,0 +1,21 @@
+#!/bin/bash
+
+DMENU="dmenu -l 12 -i"
+
+MUSICFOLDER=$HOME/Music
+
+FOLDERLIST=$(find $MUSICFOLDER -type d)
+
+Exclude="$HOME/Music/Hörbücher"
+
+
+folder=$(echo "stop 
+$FOLDERLIST" | sed -r 's/[ \t]+\/home/\n\/home/g' | $DMENU)
+
+if [ -n "$folder" ]; then
+    if [ "$folder" = "stop" ]; then
+        killall mpv
+    else
+        mpv "$folder" --no-video
+    fi
+fi
