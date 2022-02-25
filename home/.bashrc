@@ -18,7 +18,7 @@ bind "set completion-ignore-case on"
 
 #xcript to autostart onefetch when entering a new repo
 
-LAST_REPO="" 
+LAST_REPO=""
 cd() #script to autostart onefetch when entering a new repo
 { #by Quazear_omeage on: https://reddit.com/r/unixporn/comments/sxa02o/oc_neofetch_for_git_repositories
     builtin cd "$@"
@@ -39,12 +39,38 @@ clear()
 {
     printf "\033c"
     exa -D --color=always --group-directories-first
-    echo "" 
+    echo ""
 }
 
 calc()
 {
     echo "$1" | bc
+}
+
+ex ()
+{ # copied from https://gitlab.com/dwt1/dotfiles/-/blob/master/.bashrc
+    if [ -f "$1" ] ; then
+        case $1 in
+            *.tar.bz2)   tar xjf $1   ;;
+            *.tar.gz)    tar xzf $1   ;;
+            *.bz2)       bunzip2 $1   ;;
+            *.rar)       unrar x $1   ;;
+            *.gz)        gunzip $1    ;;
+            *.tar)       tar xf $1    ;;
+            *.tbz2)      tar xjf $1   ;;
+            *.tgz)       tar xzf $1   ;;
+            *.zip)       unzip $1     ;;
+            *.Z)         uncompress $1;;
+            *.7z)        7z x $1      ;;
+            *.deb)       ar x $1      ;;
+            *.tar.xz)    tar xf $1    ;;
+            *.tar.zst)   unzstd $1    ;;
+            *)
+                echo "'$1' cannot be extracted via ex()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
 }
 
 ###############################3
@@ -104,11 +130,11 @@ eval "$(starship init bash)"
 printf "\033c"
 printf '\033[0;33m'
 echo -e '
-    ___  ________  ___       ___  ___  ________  ________     
-   |\  \|\   __  \|\  \     |\  \|\  \|\   __  \|\   __  \    
-   \ \  \ \  \|\  \ \  \    \ \  \\\\\  \ \  \|\  \ \  \|\  \   
- __ \ \  \ \   __  \ \  \    \ \  \\\\\  \ \   ____\ \   __  \  
-|\  \\\_\  \ \  \ \  \ \  \____\ \  \\\\\  \ \  \___|\ \  \ \  \ 
+    ___  ________  ___       ___  ___  ________  ________
+   |\  \|\   __  \|\  \     |\  \|\  \|\   __  \|\   __  \
+   \ \  \ \  \|\  \ \  \    \ \  \\\\\  \ \  \|\  \ \  \|\  \
+ __ \ \  \ \   __  \ \  \    \ \  \\\\\  \ \   ____\ \   __  \
+|\  \\\_\  \ \  \ \  \ \  \____\ \  \\\\\  \ \  \___|\ \  \ \  \
 \ \________\ \__\ \__\ \_______\ \_______\ \__\    \ \__\ \__\
  \|________|\|__|\|__|\|_______|\|_______|\|__|     \|__|\|__|
 

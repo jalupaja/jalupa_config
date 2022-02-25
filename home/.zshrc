@@ -19,7 +19,7 @@ setopt inc_append_history                                       # save commands 
 setopt histignorespace                                          # Don't save commands that start with space
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'       # Case insensitive tab completion
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
-zstyle ':completion:*' rehash true                              # automatically find new executables in path 
+zstyle ':completion:*' rehash true                              # automatically find new executables in path
 # Speed up completions
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
@@ -57,7 +57,7 @@ bindkey '^[[1;5C' forward-word                                  #
 bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
 bindkey '^[[Z' undo                                             # Shift+tab undo last action
 
-# Theming section  
+# Theming section
 autoload -U compinit colors zcalc
 compinit -d
 colors
@@ -92,8 +92,9 @@ bindkey '^[[B' history-substring-search-down
 
 ##########################################
 
-LAST_REPO="" #xcript to autostart onefetch when entering a new repo
-cd() { #by Quazear_omeage on: https://reddit.com/r/unixporn/comments/sxa02o/oc_neofetch_for_git_repositories
+LAST_REPO="" 
+cd() #xcript to autostart onefetch when entering a new repo
+{ #by Quazear_omeage on: https://reddit.com/r/unixporn/comments/sxa02o/oc_neofetch_for_git_repositories
     builtin cd "$@"
     git rev-parse 2>/dev/null
     if [ $? -eq 0 ]; then
@@ -111,14 +112,50 @@ cd() { #by Quazear_omeage on: https://reddit.com/r/unixporn/comments/sxa02o/oc_n
 clear() {
     printf "\033c"
     exa -D --color=always --group-directories-first
-    echo "" 
+    echo ""
 }
 
 calc() {
     echo "$1" | bc
 }
 
-###############################3
+ex()
+{ #copied from: https://gitlab.com/dwt1/dotfiles/-/blob/master/.zshrc
+    if [ -z "$1" ]; then     # display usage if no parameters given
+    echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
+    echo "       extract <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"
+else
+    for n in "$@"
+    do
+        if [ -f "$n" ] ; then
+            case "${n%,}" in
+                *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
+                    tar xvf "$n"       ;;
+                *.lzma)      unlzma ./"$n"      ;;
+                *.bz2)       bunzip2 ./"$n"     ;;
+                *.cbr|*.rar)       unrar x -ad ./"$n" ;;
+                *.gz)        gunzip ./"$n"      ;;
+                *.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
+                *.z)         uncompress ./"$n"  ;;
+                *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)                          7z x ./"$n"        ;;
+                *.xz)        unxz ./"$n"        ;;
+                *.exe)       cabextract ./"$n"  ;;
+                *.cpio)      cpio -id < ./"$n"  ;;
+                *.cba|*.ace)      unace x ./"$n"      ;;
+                *)
+                    echo "extract: '$n' - unknown archive method"
+                    return 1
+                    ;;
+            esac
+        else
+            echo "'$n' - file does not exist"
+            return 1
+        fi
+    done
+fi
+}
+
+###############################
 
 #environment variables
 export EDITOR=/usr/bin/vim
@@ -175,11 +212,11 @@ eval "$(starship init zsh)"
 printf "\033c"
 printf '\033[0;33m'
 echo '
-    ___  ________  ___       ___  ___  ________  ________     
-   |\  \|\   __  \|\  \     |\  \|\  \|\   __  \|\   __  \    
-   \ \  \ \  \|\  \ \  \    \ \  \\\\\  \ \  \|\  \ \  \|\  \   
- __ \ \  \ \   __  \ \  \    \ \  \\\\\  \ \   ____\ \   __  \  
-|\  \\\_\  \ \  \ \  \ \  \____\ \  \\\\\  \ \  \___|\ \  \ \  \ 
+    ___  ________  ___       ___  ___  ________  ________
+   |\  \|\   __  \|\  \     |\  \|\  \|\   __  \|\   __  \
+   \ \  \ \  \|\  \ \  \    \ \  \\\\\  \ \  \|\  \ \  \|\  \
+ __ \ \  \ \   __  \ \  \    \ \  \\\\\  \ \   ____\ \   __  \
+|\  \\\_\  \ \  \ \  \ \  \____\ \  \\\\\  \ \  \___|\ \  \ \  \
 \ \________\ \__\ \__\ \_______\ \_______\ \__\    \ \__\ \__\
  \|________|\|__|\|__|\|_______|\|_______|\|__|     \|__|\|__|
 
