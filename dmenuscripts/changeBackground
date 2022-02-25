@@ -1,0 +1,55 @@
+#!/bin/sh
+
+# WARNING: this script will kill "bash" process cuz I dont know how to do it and it works for me. this might kill other scripts too so be aware
+
+DMENU="dmenu -l 10 -i"
+SetBG="feh --bg-fill"
+SetGif="$HOME/.config/jalupa_config/dmenuscripts/background/loadGif.sh"
+BGFOLDER=$HOME/.config/jalupa_config/dmenuscripts/background
+rmOld="pkill bash" #bad idea
+
+list="black
+default
+select picture
+select gif
+"
+
+useGif ()
+{
+    selGif=$(find $BGFOLDER/ -name *.gif | $DMENU)
+    if [ -n "$selGif" ]; then
+        speed="0.$(echo " " | $DMENU -p "speed:")"
+        if [ -n "$speed" ]; then
+            $rmOld
+            $SetGif $speed $selGif
+        fi
+    fi
+}
+
+choice=$(echo "$list" | $DMENU)
+
+case "${choice}" in
+    "black")
+        $rmOld
+        $SetBG $BGFOLDER/black.jpg
+        ;;
+    "default")
+        $rmOld
+        $SetBG $HOME/Pictures/Backgrounds/currentBackground.jpg
+        ;;
+    "select picture")
+        BGjpg=$(find $HOME/Pictures/ -name *.jpg)
+        BGpng=$(find $HOME/Pictures/ -name *.png)
+        newBG=$(echo "$BGjpg\n$BGpng" | $DMENU)
+        if [ -n "$newBG" ]; then
+            $rmOld
+            $SetBG "$newBG" &
+        fi
+        ;;
+    "select gif")
+        useGif
+        ;;
+    *)
+    ;;
+esac
+

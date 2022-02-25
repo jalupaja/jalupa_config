@@ -4,8 +4,7 @@ DMENU="dmenu -l 12 -i"
 CMD="/bin/bash -c $1"
 DMSCRIPTS="/bin/sh -c $HOME/.config/jalupa_config/dmenuscripts"
 
-menu () {
-    printf "dmenu\n"
+menu () { printf "dmenu\n"
     printf "todo\n"
     printf "kill\n"
     printf "firefox\n"
@@ -56,8 +55,9 @@ menu () {
     printf "shutdown\n"
     printf "restart\n"
     printf "picom\n"
-
     printf "translate\n"
+    printf "music\n"
+    printf "background\n"
 }
 
 choice=$(menu | $DMENU ) || exit
@@ -270,6 +270,14 @@ case $choice in
         ;;
     "translate")
         $DMSCRIPTS/translate
+        return
+        ;;
+    "music")
+        $DMSCRIPTS/music
+        return
+        ;;
+    "background")
+        $DMSCRIPTS/changeBackground
         return
         ;;
     *)
