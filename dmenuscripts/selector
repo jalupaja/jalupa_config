@@ -3,12 +3,6 @@
 DMENU="dmenu -l 12 -i"
 CMD="/bin/bash -c $1"
 DMSCRIPTS="/bin/sh -c $HOME/.config/jalupa_config/dmenuscripts"
-ask ()
-{
-    if [ "$(echo "yes\nno" | $DMENU)" = "yes" ]; then
-        $1
-    fi
-}
 
 menu () { printf "dmenu\n"
     printf "todo\n"
@@ -263,11 +257,11 @@ case $choice in
         return
         ;;
     "shutdown")
-        ask "systemctl shutdown"
+        if [ "$(echo "yes\nno" | $DMENU)" = "yes" ]; then systemctl shutdown; fi
         return
         ;;
     "restart")
-        ask "systemctl reboot"
+        if [ "$(echo "yes\nno" | $DMENU)" = "yes" ]; then systemctl restart; fi
         return
         ;;
     "picom")
