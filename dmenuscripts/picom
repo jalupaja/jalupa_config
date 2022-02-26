@@ -3,7 +3,8 @@
 DMENU="dmenu -l 4 -i"
 cd $HOME/.config/jalupa_config/picom
 
-options="start
+options="restart
+start
 kill
 use blur
 use transparency"
@@ -11,6 +12,10 @@ use transparency"
 choice=$(echo "$options" | $DMENU)
 
 case "${choice}" in
+    "restart")
+        killall picom
+        /bin/sh -c "picom --experimental-backends &"
+        ;;
     "start")
         /bin/sh -c "picom --experimental-backends &"
         ;;
