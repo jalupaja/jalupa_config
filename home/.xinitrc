@@ -1,3 +1,4 @@
+#!/bin/sh
 setxkbmap -option caps:escape_shifted_capslock
 setxkbmap -layout "us,de" -variant "basic,nodeadkeys" -option grp:ctrls_toggle
 picom --experimental-backends &
