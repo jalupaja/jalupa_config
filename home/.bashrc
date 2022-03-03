@@ -76,7 +76,7 @@ ex ()
 ###############################3
 
 #environment variables
-export EDITOR=/usr/bin/vim
+export EDITOR=/usr/bin/nvim
 
 #replace ls with exa
 alias ls="exa --color=always --group-directories-first"
@@ -112,7 +112,8 @@ alias ffp="firefox -p shopping &"
 
 #other aplications
 alias neofetch="neofetch --source /home/jakob/Pictures/ascii-Art/thing.txt --ascii_colors 208"
-alias vi="vim"
+alias vi="nvim"
+alias vim="nvim"
 alias pss="ps -aux | grep "
 alias mpvv="mpv $1 --player-operation-mode=pseudo-gui"
 alias lf="ranger"
