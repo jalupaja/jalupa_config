@@ -6,7 +6,7 @@ while true; do
 
     #volume
     if [ "$(amixer sget Master | awk -F "[][]" '/Left:/ { print $4 }')" = "off" ]; then
-        curVolume="🔈 $(amixer sget Master | awk -F "[][]" '/Left:/ { print $2 }')"
+        curVolume="🔈-$(amixer sget Master | awk -F "[][]" '/Left:/ { print $2 }')"
     else
         curVolume="🔊 $(amixer sget Master | awk -F "[][]" '/Left:/ { print $2 }')"
     fi
@@ -26,6 +26,6 @@ while true; do
         fi
     fi
     curBattery="🔋 $battery%"
-    xsetroot -name "[$curVolume] [$curBattery] [$curDate] [$curTime] "
+    xsetroot -name "[$curVolume] [${RED}$curBattery] [$curDate] [$curTime] "
     sleep 2
 done
