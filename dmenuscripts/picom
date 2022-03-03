@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DMENU="dmenu -l 4 -i"
+DMENU="dmenu -l 5 -i"
 cd $HOME/.config/jalupa_config/picom
 
 options="restart
@@ -13,14 +13,14 @@ choice=$(echo "$options" | $DMENU)
 
 case "${choice}" in
     "restart")
-        killall picom
-        /bin/sh -c "picom --experimental-backends &"
+        picom picom
+        picom --experimental-backends &
         ;;
     "start")
-        /bin/sh -c "picom --experimental-backends &"
+        picom --experimental-backends &
         ;;
     "kill")
-        killall picom
+        pkill picom
         ;;
     "use blur")
         cp -f picom.blur picom.conf
