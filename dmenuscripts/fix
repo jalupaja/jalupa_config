@@ -10,7 +10,7 @@ toFix=$(echo "$fixes" | $DMENU)
 case "$toFix" in
     "audio")
         pkill pulseaudio
-        pulseaudio --daemonize
+        /bin/sh -c "pulseaudio --daemonize"
         ;;
     "screen")
         pkill picom
