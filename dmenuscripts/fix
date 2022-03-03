@@ -1,0 +1,22 @@
+#!/bin/sh
+
+DMENU="dmenu -l 4 -i"
+
+fixes="audio
+screen"
+
+toFix=$(echo "$fixes" | $DMENU)
+
+case "$toFix" in
+    "audio")
+        pkill pulseaudio
+        pulseaudio --daemonize
+        ;;
+    "screen")
+        pkill picom
+        picom --experimental-backends &
+        ;;
+    *)
+        ;;
+esac
+
