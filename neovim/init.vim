@@ -77,7 +77,6 @@ let g:vimtex_quickfix_open_on_warning = 1
 let g:vimtex_view_method = 'zathura'    " use zathura as build in viewer method
 "let g:vimtex_view_general_viewer = 'okular' " use generic interface
 "let g:vimtex_view_general_viewer = '--unique file:@pdf/#src:@line@tex'
-let g:vimtex_latexmk_continuous = 1     " automatic compilation on save 
 
 " -----------------------
 " Autosave config for the vimtex config
