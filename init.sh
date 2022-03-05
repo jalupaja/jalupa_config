@@ -58,6 +58,13 @@ instDunst () {
     ln -s $DOTFILES_ROOT/dunst/dunstrc $HOME/.config/dunst/dunstrc
 }
 
+initServices () {
+    #cp $DOTFILES_ROOT/startup/rc.local /etc/
+    sudo ln -s $DOTFILES_ROOT/startup/rc.local /etc/rc.local
+    sudo cp $DOTFILES_ROOT/startup/rc-local.service /etc/systemd/system/rc-local.service
+    sudo systemctl enable rc-local
+}
+
 instNeovim
 instVim
 
@@ -68,3 +75,5 @@ instZsh
 #instXorg
 #instPicom
 #instDunst
+
+#initServices
