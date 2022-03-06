@@ -3,7 +3,8 @@
 DOTFILES_ROOT=$(pwd -P)
 NVIM_ROOT="$HOME/.config/nvim"
 
-instNeovim () {
+instNeovim()
+{
     mkdir $HOME/.config/nvim
     # clang
     mv $HOME/.clang-format $HOME/.clang-format.BakJalupa
@@ -22,48 +23,57 @@ instNeovim () {
     ln -s $DOTFILES_ROOT/neovim/init.vim $NVIM_ROOT/init.vim
 }
 
-instVim () {
+instVim()
+{
     mv $HOME/.vimrc $HOME/.vimrc.BakJalupa
     ln -s $DOTFILES_ROOT/home/.vimrc $HOME/.vimrc
 }
 
-instBash () {
+instBash()
+{
     mv $HOME/.bashrc $HOME/.bashrc.BakJalupa
     ln -s $DOTFILES_ROOT/home/.bashrc $HOME/.bashrc
 }
 
-instZsh () {
+instZsh()
+{
     mv $HOME/.zshrc $HOME/.zshrc.BakJalupa
     ln -s $DOTFILES_ROOT/home/.zshrc $HOME/.zshrc
 }
 
-instNeofetch () {
+instNeofetch()
+{
     mv $HOME/.config/neofetch/config.conf $HOME/.config/neofetch/config.conf.BakJalupa
     ln -s $DOTFILES_ROOT/neofetch/config.conf $HOME/.config/neofetch/config.conf
 }
 
-instStarship () {
+instStarship()
+{
     mv $HOME/.config/starship.toml $HOME/.config/starship.toml.BakJalupa
     ln -s $DOTFILES_ROOT/starship/starship.toml $HOME/.config/starship.toml
 }
 
-instXorg () {
+instXorg()
+{
     mv $HOME/.xinitrc $HOME/.xinitrc.BakJalupa
     cp $DOTFILES_ROOT/home/.xinitrc $HOME/.xinitrc
 }
 
-instPicom () {
+instPicom()
+{
     mv $HOME/.config/picom.conf $HOME/.config/picom.conf.BakJalupa
     ln -s $DOTFILES_ROOT/picom/picom.conf $HOME/.config/picom.conf
 }
 
-instDunst () {
+instDunst()
+{
     mv $HOME/.config/dunst/dunstrc $HOME/.config/dunst/dunstrc.BakJalupa
     mkdir $HOME/.config/dunst
     ln -s $DOTFILES_ROOT/dunst/dunstrc $HOME/.config/dunst/dunstrc
 }
 
-initServices () {
+initServices()
+{
     #cp $DOTFILES_ROOT/startup/rc.local /etc/
     sudo ln -s $DOTFILES_ROOT/startup/rc.local /etc/rc.local
     sudo cp $DOTFILES_ROOT/startup/rc-local.service /etc/systemd/system/rc-local.service
