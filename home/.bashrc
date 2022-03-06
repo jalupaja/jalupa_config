@@ -111,7 +111,7 @@ alias ffr="firefox -p research &"
 alias ffp="firefox -p shopping &"
 
 #other aplications
-alias neofetch="neofetch --source /home/jakob/Pictures/ascii-Art/thing.txt --ascii_colors 208"
+alias neofetch="neofetch --ascii_colors 208"
 alias vi="nvim"
 alias vim="nvim"
 alias pss="ps -aux | grep "

@@ -37,6 +37,11 @@ instZsh () {
     ln -s $DOTFILES_ROOT/home/.zshrc $HOME/.zshrc
 }
 
+instNeofetch () {
+    mv $HOME/.config/neofetch/config.conf $HOME/.config/neofetch/config.conf.BakJalupa
+    ln -s $DOTFILES_ROOT/neofetch/config.conf $HOME/.config/neofetch/config.conf
+}
+
 instStarship () {
     mv $HOME/.config/starship.toml $HOME/.config/starship.toml.BakJalupa
     ln -s $DOTFILES_ROOT/starship/starship.toml $HOME/.config/starship.toml
@@ -71,6 +76,7 @@ instVim
 #instBash
 instZsh
 
+instNeofetch
 #instStarship
 #instXorg
 #instPicom

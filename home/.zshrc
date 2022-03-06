@@ -109,13 +109,15 @@ cd() #xcript to autostart onefetch when entering a new repo
     echo ""
 }
 
-clear() {
+clear()
+{
     printf "\033c"
     exa -D --color=always --group-directories-first
     echo ""
 }
 
-calc() {
+calc()
+{
     echo "$1" | bc
 }
 
@@ -164,7 +166,7 @@ export EDITOR=/usr/bin/nvim
 alias ls="exa --color=always --group-directories-first"
 alias ll="exa -l --color=always --group-directories-first"
 alias la="exa -la --color=always --group-directories-first"
-alias lg="exa -la --color=always --group-directories-first | grep"
+alias lg="exa -la --color=always --group-directories-first | grep --color=auto"
 
 #cd stuff
 alias rep="cd $HOME/repos/"
@@ -193,7 +195,7 @@ alias ffr="firefox -p research &"
 alias ffp="firefox -p shopping &"
 
 #other aplications
-alias neofetch="neofetch --source /home/jakob/Pictures/ascii-Art/thing.txt --ascii_colors 208"
+alias neofetch="neofetch --ascii_colors 208"
 alias vi="nvim"
 alias vim="nvim"
 alias pss="ps -aux | grep "
