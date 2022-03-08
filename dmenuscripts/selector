@@ -4,11 +4,13 @@ DMENU="dmenu -l 12 -i"
 CMD="/bin/bash -c $1"
 DMSCRIPTS="/bin/sh -c $HOME/.config/jalupa_config/dmenuscripts"
 
-menu () { printf "dmenu\n"
+menu () { 
+    printf "dmenu\n"
     printf "todo\n"
     printf "kill\n"
     printf "firefox\n"
     printf "st\n"
+    printf "kitty\n"
     printf "mpv\n"
     printf "vlc\n"
     printf "signal\n"
@@ -17,12 +19,10 @@ menu () { printf "dmenu\n"
     printf "bitwarden\n"
     printf "keepassxc\n"
     printf "veracrypt\n"
-    printf "clementine\n"
     printf "spotify\n"
-    printf "okular (pdf viewer)\n"
-    printf "onlyoffic\n"
+    printf "zathura (pdf viewer)\n"
+    printf "onlyoffice\n"
     printf "xournal++\n"
-    printf "krita\n"
     printf "protonvpn\n"
     printf "riseupvpn\n"
     printf "brave\n"
@@ -30,19 +30,13 @@ menu () { printf "dmenu\n"
     printf "tor browser\n"
     printf "onionshare\n"
     printf "discord\n"
-    printf "vscodium\n"
-    printf "bleachbit\n"
     printf "calculator\n"
     printf "camera\n"
-    printf "dolphin (file manager)\n"
-    printf "kate (file viewer)\n"
+    printf "thunar (file manager)\n"
     printf "firefox research\n"
     printf "firefox social\n"
     printf "firefox shopping\n"
-    printf "virtualbox\n"
-    printf "manjaro settings\n"
-    printf "manjaro settings manager\n"
-    printf "kernel\n"
+    printf "virtmanager\n"
     printf "wifi\n"
     printf "bluetooth\n"
     printf "clipboard\n"
@@ -50,14 +44,16 @@ menu () { printf "dmenu\n"
     printf "screenshot\n"
     printf "brightness\n"
     printf "volume\n"
+    printf "pavucontrol (volume control)\n"
     printf "lock\n"
     printf "sleep\n"
     printf "shutdown\n"
     printf "restart\n"
     printf "picom\n"
     printf "translate\n"
-    printf "music\n"
+    printf "music/radio\n"
     printf "background\n"
+    printf "fix\n"
 }
 
 choice=$(menu | $DMENU ) || exit
@@ -111,6 +107,10 @@ case $choice in
         $CMD st
         return
         ;;
+    "kitty")
+        $CMD kitty
+        return
+        ;;
     "mpv")
         $CMD "mpv --player-operation-mode=pseudo-gui"
         return
@@ -159,32 +159,20 @@ case $choice in
         $CMD "firefox -p discord"
         return
         ;;
-    "clementin (music manager)")
-        $CMD clemetine
-        return
-        ;;
     "spotify")
         $CMD spotify
         return
         ;;
-    "vscodium")
-        $CMD vscodium
-        return
-        ;;
-    "okular (pdf viewer)")
-        $CMD okular
+    "zathura (pdf viewer)")
+        $CMD zathura
         return
         ;;
     "onlyoffice")
-        $CMD onlyoffice
+        $CMD onlyoffice-desktopeditors
         return
         ;;
     "xournal++")
         $CMD xournalpp
-        return
-        ;;
-    "krita")
-        $CMD krita
         return
         ;;
     "calculator")
@@ -195,28 +183,12 @@ case $choice in
         $CMD deepin-camera
         return
         ;;
-    "dolphin (file manager)")
-        $CMD dolphin
+    "thunar (file manager)")
+        $CMD thunar
         return
         ;;
-    "kate (file viewer)")
-        $CMD kate
-        return
-        ;;
-    "virtualbox")
-        $CMD VirtualBox
-        return
-        ;;
-    "manjaro settings")
-        $CMD systemsettings5
-        return
-        ;;
-    "manjaro settings manager")
-        $CMD manjaro-settings-manager
-        return
-        ;;
-    "kernel")
-        $CMD manjaro-settings-manager
+    "virtmanager")
+        $CMD virt-manager
         return
         ;;
     "wifi")
@@ -247,6 +219,10 @@ case $choice in
         $DMSCRIPTS/volume
         return
         ;;
+    "pavucontrol (volume control)")
+        $CMD pavucontrol
+        return
+        ;;
     "lock")
         $CMD slock
         return
@@ -272,12 +248,16 @@ case $choice in
         $DMSCRIPTS/translate
         return
         ;;
-    "music")
+    "music/radio")
         $DMSCRIPTS/music
         return
         ;;
     "background")
         $DMSCRIPTS/changeBackground
+        return
+        ;;
+    "fix")
+        $DMSCRIPTS/fix
         return
         ;;
     *)
