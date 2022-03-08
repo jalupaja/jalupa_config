@@ -73,6 +73,27 @@ ex ()
     fi
 }
 
+s()
+{ 
+for n in "$@"
+do
+    if [ -f "$n" ] ; then
+        case "${n%,}" in
+            *.pdf|*.epub)
+                zathura "$n" &      ;;
+            *.mpg|*.jpg|.*jpeg|*.png)      feh ./"$n"      ;;
+            *.gif|*.xpm|*.avi|*.flv|*.wav|*.webm|*.wma|*.wmv|*.w2v|*.m4a|*.m4v|*.mkv|*.mov|*.mp3|*.mp4|*.mpeg|*.mpg)    mpv ./"$n"  ;;
+            *.odt|*.doc|*.docx|*.xls|*.xlsx|*.xlsx|*.odp|*.ods|*.pptx|*.odg)       onlyoffice-desktopeditors ./"$n"     ;;
+            *.xopp)     xournalpp ./"$n" &   ;;
+            *)  nvim ./"$n"     ;;
+        esac
+    else
+        echo "'$n' - file does not exist"
+        return 1
+    fi
+done
+}
+
 ###############################3
 
 #environment variables
