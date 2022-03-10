@@ -148,7 +148,7 @@ case $choice in
         return
         ;;
     "riseupvpn")
-        $CMD riseup-vpn
+        $CMD riseup-vpn-terminal
         return
         ;;
     "onionshare")
