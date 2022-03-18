@@ -38,6 +38,7 @@ menu () {
     printf "firefox shopping\n"
     printf "virtmanager\n"
     printf "wifi\n"
+    printf "wifi gui\n"
     printf "bluetooth\n"
     printf "clipboard\n"
     printf "clear-clipboard\n"
@@ -193,6 +194,10 @@ case $choice in
         ;;
     "wifi")
         $DMSCRIPTS/wifi
+        return
+        ;;
+    "wifi gui")
+        $CMD nm-connection-editor
         return
         ;;
     "bluetooth")
