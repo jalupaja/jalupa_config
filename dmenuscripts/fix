@@ -4,7 +4,8 @@ DMENU="dmenu -l 4 -i"
 
 fixes="audio
 screen
-multi monitor"
+multi monitor
+keyboard"
 
 toFix=$(echo "$fixes" | $DMENU)
 
@@ -25,6 +26,10 @@ case "$toFix" in
         xrandr --auto --output DP-2 --right-of eDP-1
         sleep 1
         feh --bg-filld $HOME/Pictures/Backgrounds/currentBackground.jpg
+        ;;
+    "keyboard")
+        setxkbmap -option caps:escape_shifted_capslock
+        setxkbmap -layout "us,de" -variant "basic,nodeadkeys" -option grp:ctrls_toggle
         ;;
     *)
         ;;
