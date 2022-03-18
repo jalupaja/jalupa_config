@@ -13,6 +13,7 @@ menu () {
     printf "kitty\n"
     printf "mpv\n"
     printf "vlc\n"
+    printf "joplin\n"
     printf "signal\n"
     printf "tutanota\n"
     printf "element\n"
@@ -118,6 +119,10 @@ case $choice in
         ;;
     "vlc")
         $CMD vlc
+        return
+        ;;
+    "joplin")
+        $CMD joplin-desktop
         return
         ;;
     "signal")
