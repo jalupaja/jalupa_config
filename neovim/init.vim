@@ -29,7 +29,8 @@ Plug 'pechorin/any-jump.vim'        "
 "Plug 'scrooloose/nerdtree'         " file explorer
 "Plug 'vim/devicons'                " devicons for nerdtree
 Plug 'kevinhwang91/rnvimr'          " ranger support
-Plug 'sirver/ultisnips'             " autocomplete snippets
+Plug 'honza/vim-snippets'                 " autocomplete snippets
+Plug 'sirver/ultisnips'             " configure snippets
 Plug 'skywind3000/asynctasks.vim'   " auto build, run stuff
 Plug 'skywind3000/asyncrun.vim'
 Plug 'sbdchd/neoformat'             " auto formatter
@@ -40,7 +41,7 @@ call plug#end()
 
 " ----------------------
 " configure extra coc extensions. rest is in in coc-settings.json
-let g:coc_global_extensions = ['coc-pyright', 'coc-cmake', 'coc-java', 'coc-powershell', 'coc-git', 'coc-html', 'coc-css', 'coc-tsserver', 'coc-json', 'coc-markdownlint']
+let g:coc_global_extensions = ['coc-pyright', 'coc-cmake', 'coc-java', 'coc-powershell', 'coc-git', 'coc-html', 'coc-css', 'coc-tsserver', 'coc-json', 'coc-vimtex' , 'coc-markdownlint']
 
 " ----------------------
 "  configure treesitter extensions
@@ -66,13 +67,21 @@ let g:any_jump_disable_default_keybindings = 1
 nnoremap <Leader>i :AnyJump<CR>
 
 " -----------------------
+"  Snippet config
+let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpForwardTrigger='<c-n>'
+let g:UltiSnipsJumpBackwardTrigger='<c-p>'
+let g:UltiSnipsSnippetDirectories=["UltiSnips", $HOME.'/.config/jalupa_config/neovim/snippets']
+let g:UltiSnipsSnippetsDir = $HOME.'/.config/jalupa_config/neovim/snippets'
+
+" -----------------------
 " LaTeX config
 " set shellslash " for win32
 let g:tex_falvor='latex'
 let g:vimtex_indent_enabled = 1
 let g:vimtex_complete_recursive_bib = 1
 let g:vimtex_complete_close_baces = 1
-let g:vimtex_quickfix_mode = 2
+let g:vimtex_quickfix_mode = 0
 let g:vimtex_quickfix_open_on_warning = 1
 let g:vimtex_view_method = 'zathura'    " use zathura as build in viewer method
 "let g:vimtex_view_general_viewer = 'okular' " use generic interface
