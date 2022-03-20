@@ -25,7 +25,7 @@ case "$toFix" in
         setxkbmap -layout "us,de" -variant "basic,nodeadkeys" -option grp:ctrls_toggle
         xrandr --auto --output DP-2 --right-of eDP-1
         sleep 1
-        feh --bg-filld $HOME/Pictures/Backgrounds/currentBackground.jpg
+        feh --bg-fill $HOME/Pictures/Backgrounds/currentBackground.jpg
         ;;
     "keyboard")
         setxkbmap -option caps:escape_shifted_capslock
