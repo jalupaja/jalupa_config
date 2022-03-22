@@ -9,6 +9,7 @@ set autoindent
 set number
 set relativenumber
 set encoding=utf8
+set termguicolors
 
 syntax on
 filetype plugin on
@@ -29,11 +30,13 @@ Plug 'pechorin/any-jump.vim'        "
 "Plug 'scrooloose/nerdtree'         " file explorer
 "Plug 'vim/devicons'                " devicons for nerdtree
 Plug 'kevinhwang91/rnvimr'          " ranger support
-Plug 'honza/vim-snippets'                 " autocomplete snippets
+Plug 'honza/vim-snippets'           " autocomplete snippets
 Plug 'sirver/ultisnips'             " configure snippets
 Plug 'skywind3000/asynctasks.vim'   " auto build, run stuff
 Plug 'skywind3000/asyncrun.vim'
 Plug 'sbdchd/neoformat'             " auto formatter
+Plug 'norcalli/nvim-colorizer.lua'  " show color as background on text
+Plug 'KabbAmine/vCoolor.vim'        " color picker
 Plug 'nvim-treesitter/nvim-treesitter'
 
 Plug 'lervag/vimtex'                " LaTeX Support
@@ -41,7 +44,7 @@ call plug#end()
 
 " ----------------------
 " configure extra coc extensions. rest is in in coc-settings.json
-let g:coc_global_extensions = ['coc-pyright', 'coc-cmake', 'coc-java', 'coc-powershell', 'coc-git', 'coc-html', 'coc-css', 'coc-tsserver', 'coc-json', 'coc-vimtex' , 'coc-markdownlint']
+let g:coc_global_extensions = ['coc-pyright', 'coc-cmake', 'coc-java', 'coc-powershell', 'coc-git', 'coc-html', 'coc-css', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-vimtex' , 'coc-markdownlint']
 
 " ----------------------
 "  configure treesitter extensions
@@ -65,6 +68,12 @@ nmap <leader>m :RnvimrToggle<CR>
 " changeany-jump config
 let g:any_jump_disable_default_keybindings = 1
 nnoremap <Leader>i :AnyJump<CR>
+
+" ----------------------
+" colorizer config
+lua <<EOF
+require'colorizer'.setup()
+EOF
 
 " -----------------------
 "  Snippet config
@@ -106,7 +115,6 @@ let g:asyncrun_open = 10
 " -----------------------
 "  Colorscheme config: lightline, srcery
 set noshowmode      " remove -- INSERT --
-set termguicolors
 let g:srcery_italic = 1
 let g:lightline = {
             \ 'colorscheme': 'srcery',
