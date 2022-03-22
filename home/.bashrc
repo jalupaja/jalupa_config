@@ -31,14 +31,14 @@ cd() #script to autostart onefetch when entering a new repo
             LAST_REPO=$(basename $(git rev-parse --show-toplevel))
         fi
     fi
-    sls -D
+    sls -De
     echo ""
 }
 
 clear()
 {
     printf "\033c"
-    sls -D
+    sls -De
     echo ""
 }
 
@@ -142,8 +142,6 @@ alias vi="nvim"
 alias vim="nvim"
 alias pss="ps -aux | grep "
 alias mpvv="mpv $1 --player-operation-mode=pseudo-gui"
-alias xrandrRO="xrandr --auto --output $1 --righ-of $2"
-alias xrandrLO="xrandr --auto --output $1 --left-of $2"
 alias lf="ranger"
 alias grep='grep --colour=auto'
 alias df='df -h'                                                # Human-readable sizes
