@@ -183,11 +183,16 @@ done
 #environment variables
 export EDITOR=/usr/bin/nvim
 
-#replace ls with exa
-alias ls="exa --color=always --group-directories-first"
-alias ll="exa -l --color=always --group-directories-first"
-alias la="exa -la --color=always --group-directories-first"
-alias lg="exa -la --color=always --group-directories-first | grep --color=auto"
+#replace ls with sls (exa as backup)
+alias ls="sls -e"
+alias ll="sls -le"
+alias la="sls -l"
+alias lg="sls -l | grep"
+
+alias lls="exa --color=always --group-directories-first"
+alias lll="exa -l --color=always --group-directories-first"
+alias lla="exa -la --color=always --group-directories-first"
+alias llg="exa -la --color=always --group-directories-first | grep --color=auto"
 
 #cd stuff
 alias rep="cd $HOME/repos/"
