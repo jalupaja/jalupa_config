@@ -31,14 +31,14 @@ cd() #script to autostart onefetch when entering a new repo
             LAST_REPO=$(basename $(git rev-parse --show-toplevel))
         fi
     fi
-    exa -D --color=always --group-directories-first
+    sls -D
     echo ""
 }
 
 clear()
 {
     printf "\033c"
-    exa -D --color=always --group-directories-first
+    sls -D
     echo ""
 }
 
