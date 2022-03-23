@@ -178,7 +178,7 @@ do
 done
 }
 
-www()
+live()
 {
     live-server -q "$1" &
     \vim "$1"
