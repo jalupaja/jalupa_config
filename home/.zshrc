@@ -230,6 +230,7 @@ alias lf="ranger"
 alias grep='grep --colour=auto'
 alias df='df -h'                                                # Human-readable sizes
 alias free='free -m'                                            # Show sizes in MB
+alias www="live-server $1 &"
 
 #dmenu
 alias dmenu_run="dmenu_run -l 12 -i "
