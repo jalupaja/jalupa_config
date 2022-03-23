@@ -25,7 +25,6 @@ Plug 'srcery-colors/srcery-vim'
 Plug 'itchyny/lightline.vim'
 " ---
 
-Plug 'neoclide/coc.nvim', { 'branch': 'release' } " Syntax completion support
 Plug 'pechorin/any-jump.vim'        " 
 "Plug 'scrooloose/nerdtree'         " file explorer
 "Plug 'vim/devicons'                " devicons for nerdtree
@@ -39,7 +38,15 @@ Plug 'norcalli/nvim-colorizer.lua'  " show color as background on text
 Plug 'KabbAmine/vCoolor.vim'        " color picker
 Plug 'nvim-treesitter/nvim-treesitter'
 
-Plug 'lervag/vimtex'                " LaTeX Support
+" --- language support
+Plug 'neoclide/coc.nvim', { 'branch': 'release' } " Syntax completion support
+Plug 'lervag/vimtex'                " LaTeX support
+Plug 'shirk/vim-gas'                " assembler support
+Plug 'philj56/vim-asm-indent'
+
+" --- debug stuff
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
 call plug#end()
 
 " ----------------------
@@ -98,10 +105,20 @@ let g:vimtex_view_method = 'zathura'    " use zathura as build in viewer method
 
 " -----------------------
 " Autosave config for the vimtex config
-augroup TexAutoWrite
+augroup Autosave
        autocmd filetype tex :autocmd! TextChanged,TextChangedI <buffer> silent write
        " autocmd filetype markdown :autocmd! TextChanged,TextChangedI <buffer> silent write
+        autocmd filetype html :autocmd! TextChanged,TextChangedI <buffer> write
+        autocmd filetype css :autocmd! TextChanged,TextChangedI <buffer> write
 augroup END
+
+" -----------------------
+"  autosave html/css files (doesnt work as tex files above because live-server
+"  crashes after one change)
+
+" -----------------------
+" use vim-gas syntax highlighting for asm files
+autocmd BufNew,BufRead *.asm set ft=gas
 
 " -----------------------
 " Asynctask config
@@ -111,6 +128,165 @@ noremap <leader>b :AsyncTask file-build<cr>
 " noremap <leader>b :AsyncTask cmake-build-run<cr>
 let g:asynctasks_term_pos = 'tab'
 let g:asyncrun_open = 10
+
+"" vimspector and dapui are configured by Tresonic
+" vimspector ------------------------------------------------------------------
+lua << EOF
+local dap = require('dap')
+dap.adapters.lldb = {
+  type = 'executable',
+  command = '/usr/bin/lldb-vscode', -- adjust as needed
+  name = "lldb"
+}
+
+dap.configurations.cpp = {
+  {
+    name = "Launch intelligent",
+    type = "lldb",
+    request = "launch",
+    program = function()
+    local cwd = vim.fn.getcwd()
+    local xprog = vim.fn.execute('!find build/src/* -executable -type f', "silent")
+    xprog:match("[^\n]*")
+    local finpath = ('\n'..xprog):gsub("\n:!find [^\n]*", ""):sub(4)
+    finpath = finpath:gsub("\n", "")
+    finpath = cwd..'/'..finpath
+
+    print("result: " ..finpath)
+    -- print(vim.fn.execute('!ip a', true))
+    --print(cwd .. '/build/src/${fileBasenameNoExtension}')
+        if vim.fn.executable(finpath) then
+            return finpath
+        else
+            return cwd .. '${fileBasenameNoExtension}' 
+        end
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+    args = {},
+
+    -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
+    --
+    --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+    --
+    -- Otherwise you might get the following error:
+    --
+    --    Error on launch: Failed to attach to the target process
+    --
+    -- But you should be aware of the implications:
+    -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
+    runInTerminal = false,
+      env = function()
+    local variables = {}
+    for k, v in pairs(vim.fn.environ()) do
+      table.insert(variables, string.format("%s=%s", k, v))
+    end
+    return variables
+  end,
+  },
+  {
+    name = "Launch",
+    type = "lldb",
+    request = "launch",
+    --program = function()
+    --  return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    --end,
+    program = "${fileBasenameNoExtension}",
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+    args = {},
+
+    -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
+    --
+    --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+    --
+    -- Otherwise you might get the following error:
+    --
+    --    Error on launch: Failed to attach to the target process
+    --
+    -- But you should be aware of the implications:
+    -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
+    runInTerminal = false,
+  },
+  {
+    name = "Launch Cmake-built",
+    type = "lldb",
+    request = "launch",
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    --program = "${fileWorkspaceFolder}/build/src/sortviz",
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+    args = {},
+
+    -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
+    --
+    --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+    --
+    -- Otherwise you might get the following error:
+    --
+    --    Error on launch: Failed to attach to the target process
+    --
+    -- But you should be aware of the implications:
+    -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
+    runInTerminal = false,
+  },
+}
+EOF
+
+" dapui ---------------------------------------------------------------------
+lua << EOF
+require("dapui").setup({
+  icons = { expanded = "▾", collapsed = "▸" },
+  mappings = {
+    -- Use a table to apply multiple mappings
+    expand = { "<CR>", "<2-LeftMouse>" },
+    open = "o",
+    remove = "d",
+    edit = "e",
+    repl = "r",
+  },
+  sidebar = {
+    -- You can change the order of elements in the sidebar
+    elements = {
+      -- Provide as ID strings or tables with "id" and "size" keys
+      {
+        id = "scopes",
+        size = 0.5, -- Can be float or integer > 1
+      },
+      { id = "breakpoints", size = 0.25 },
+      --{ id = "stacks", size = 0.25 },
+      --{ id = "watches", size = 00.25 },
+    },
+    size = 40,
+    position = "left", -- Can be "left", "right", "top", "bottom"
+  },
+  tray = {
+    elements = { "repl" },
+    size = 10,
+    position = "bottom", -- Can be "left", "right", "top", "bottom"
+  },
+  floating = {
+    max_height = nil, -- These can be integers or a float between 0 and 1.
+    max_width = nil, -- Floats will be treated as percentage of your screen.
+    border = "single", -- Border style. Can be "single", "double" or "rounded"
+    mappings = {
+      close = { "q", "<Esc>" },
+    },
+  },
+  windows = { indent = 1 },
+})
+
+require("dapui").setup()
+EOF
+
+" keybinds for nvim-dap and nvim-dap-ui -------------------------------------
+noremap <leader>do :lua require("dapui").open()<cr>
+noremap <leader>dt :lua require("dapui").toggle()<cr>
+noremap <leader>dc :lua require("dap").continue()<cr>
+noremap <leader>db :lua require("dap").toggle_breakpoint()<cr>
+noremap <leader>ds :lua require("dap").step_over()<cr>
 
 " -----------------------
 "  Colorscheme config: lightline, srcery
