@@ -108,13 +108,13 @@ let g:vimtex_view_method = 'zathura'    " use zathura as build in viewer method
 augroup Autosave
        autocmd filetype tex :autocmd! TextChanged,TextChangedI <buffer> silent write
        " autocmd filetype markdown :autocmd! TextChanged,TextChangedI <buffer> silent write
-        autocmd filetype html :autocmd! TextChanged,TextChangedI <buffer> write
-        autocmd filetype css :autocmd! TextChanged,TextChangedI <buffer> write
 augroup END
 
 " -----------------------
 "  autosave html/css files (doesnt work as tex files above because live-server
 "  crashes after one change)
+autocmd filetype html :autocmd! TextChanged,TextChangedI <buffer> silent write
+autocmd filetype css :autocmd! TextChanged,TextChangedI <buffer> silent write
 
 " -----------------------
 " use vim-gas syntax highlighting for asm files
@@ -185,13 +185,13 @@ dap.configurations.cpp = {
   end,
   },
   {
-    name = "Launch",
+    name = "launch executable built by tasks",
     type = "lldb",
     request = "launch",
     --program = function()
     --  return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
     --end,
-    program = "${fileBasenameNoExtension}",
+    program = "${fileBasenameNoExtension}.out",
     cwd = '${workspaceFolder}',
     stopOnEntry = false,
     args = {},
@@ -233,6 +233,7 @@ dap.configurations.cpp = {
     runInTerminal = false,
   },
 }
+dap.configurations.c = dap.configurations.cpp
 EOF
 
 " dapui ---------------------------------------------------------------------
