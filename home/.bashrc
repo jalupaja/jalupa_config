@@ -96,7 +96,7 @@ done
 
 live()
 {
-    live-server -q "$1" &
+    live-server -q &
     \vim "$1"
 }
 
