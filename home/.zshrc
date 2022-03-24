@@ -181,7 +181,7 @@ done
 live()
 {
     live-server -q &
-    \vim "$1"
+    nvim index.html
 }
 
 ###############################
