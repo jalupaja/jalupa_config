@@ -590,55 +590,55 @@ snippet case "cases" wA
 \end{cases}
 endsnippet
 
-snippet SI "SI" iA
+snippet SI "SI" i
 \SI{$1}{$2}
 endsnippet
 
-snippet bigfun "Big function" iA
+snippet bigfun "Big function" i
 \begin{align*}
 	$1: $2 &\longrightarrow $3 \\\\
 	$4 &\longmapsto $1($4) = $0
 .\end{align*}
 endsnippet
 
-snippet cvec "column vector" iA
+snippet cvec "column vector" i
 \begin{pmatrix} ${1:x}_${2:1}\\\\ \vdots\\\\ $1_${2:n} \end{pmatrix}
 endsnippet
 
 priority 10
 context "math()"
-snippet "bar" "bar" riA
+snippet "bar" "bar" ri
 \overline{$1}$0
 endsnippet
 
 priority 100
 context "math()"
-snippet "([a-zA-Z])bar" "bar" riA
+snippet "([a-zA-Z])bar" "bar" ri
 \overline{`!p snip.rv=match.group(1)`}
 endsnippet
 
 priority 10
 context "math()"
-snippet "hat" "hat" riA
+snippet "hat" "hat" ri
 \hat{$1}$0
 endsnippet
 
 priority 100
 context "math()"
-snippet "([a-zA-Z])hat" "hat" riA
+snippet "([a-zA-Z])hat" "hat" ri
 \hat{`!p snip.rv=match.group(1)`}
 endsnippet
 
-snippet letw "let omega" iA
+snippet letw "let omega" i
 Let $\Omega \subset \C$ be open.
 endsnippet
 
 
-snippet HH "H" iA
+snippet HH "H" i
 \mathbb{H}
 endsnippet
 
-snippet DD "D" iA
+snippet DD "D" i
 \mathbb{D}
 endsnippet
 
