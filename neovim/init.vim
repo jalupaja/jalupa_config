@@ -41,7 +41,7 @@ Plug 'nvim-treesitter/nvim-treesitter'
 " --- language support
 Plug 'neoclide/coc.nvim', { 'branch': 'release' } " Syntax completion support
 Plug 'lervag/vimtex'                " LaTeX support
-Plug 'shirk/vim-gas'                " assembler support
+"Plug 'shirk/vim-gas'                " assembler support
 Plug 'philj56/vim-asm-indent'
 
 " --- debug stuff
@@ -117,8 +117,8 @@ autocmd filetype html :autocmd! TextChanged,TextChangedI <buffer> silent write
 autocmd filetype css :autocmd! TextChanged,TextChangedI <buffer> silent write
 
 " -----------------------
-" use vim-gas syntax highlighting for asm files
-autocmd BufNew,BufRead *.asm set ft=gas
+" use nasm syntax highlighting for asm files
+autocmd BufNew,BufRead *.asm set ft=nasm
 
 " -----------------------
 " Asynctask config
