@@ -9,7 +9,7 @@ PLAYERTOKILL="mpv"
 play ()
 {
     pkill $PLAYERTOKILL
-    $PLAYER $1
+    $PLAYER "$1"
 }
 
 musicFromLink ()
@@ -20,6 +20,7 @@ musicFromLink ()
 80s
 90s
 jazz
+jazz 2
 jazz funk
 funk
 reggae
@@ -53,6 +54,9 @@ if [ -n "$link" ]; then
             ;;
         "jazz")
             play https://zeno.fm/radio/gaslight-sqare-jazz
+            ;;
+        "jazz 2")
+            play https://jazz-wr04.ice.infomaniak.ch/jazz-wr04-128.mp3
             ;;
         "jazz funk")
             play https://zeno.fm/radio/kjgr-jazz-grooves
