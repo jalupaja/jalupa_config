@@ -11,6 +11,7 @@ menu () {
     printf "firefox\n"
     printf "st\n"
     printf "kitty\n"
+    printf "sasm\n"
     printf "mpv\n"
     printf "vlc\n"
     printf "joplin\n"
@@ -111,6 +112,10 @@ case $choice in
         ;;
     "kitty")
         $CMD kitty
+        return
+        ;;
+    "sasm")
+        $CMD sasm
         return
         ;;
     "mpv")
