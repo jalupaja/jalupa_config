@@ -181,7 +181,7 @@ done
 
 live()
 {
-    live-server -q --browser=librewolf &
+    live-server -q &
     nvim index.html
 }
 
