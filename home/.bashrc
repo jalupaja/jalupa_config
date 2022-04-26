@@ -101,6 +101,11 @@ live()
     nvim index.html
 }
 
+zipthis()
+{
+    zip -r "$(basename "$(pwd)")".zip .
+}
+
 ###############################3
 
 #environment variables
