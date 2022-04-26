@@ -2,14 +2,18 @@
 
 DMENU="dmenu -l 4 -i"
 
-fixes="audio
+fixes="keyboard
+audio
 screen
-multi monitor
-keyboard"
+multi monitor"
 
 toFix=$(echo "$fixes" | $DMENU)
 
 case "$toFix" in
+    "keyboard")
+        setxkbmap -option caps:escape_shifted_capslock
+        setxkbmap -layout "us,de" -variant "basic,nodeadkeys" -option grp:ctrls_toggle
+        ;;
     "audio")
         pkill pulseaudio
         /bin/sh -c "pulseaudio --daemonize"
@@ -26,10 +30,6 @@ case "$toFix" in
         xrandr --auto --output DP-2 --right-of eDP-1
         sleep 1
         feh --bg-fill $HOME/Pictures/Backgrounds/currentBackground.jpg
-        ;;
-    "keyboard")
-        setxkbmap -option caps:escape_shifted_capslock
-        setxkbmap -layout "us,de" -variant "basic,nodeadkeys" -option grp:ctrls_toggle
         ;;
     *)
         ;;

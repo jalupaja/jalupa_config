@@ -8,8 +8,8 @@ SetGif="$HOME/.config/jalupa_config/dmenuscripts/background/loadGif.sh"
 BGFOLDER=$HOME/.config/jalupa_config/dmenuscripts/background
 rmOld="pkill bash" #bad idea
 
-list="black
-default
+list="default
+black
 select picture
 select gif
 "
@@ -29,13 +29,13 @@ useGif ()
 choice=$(echo "$list" | $DMENU)
 
 case "${choice}" in
-    "black")
-        $rmOld
-        $SetBG $BGFOLDER/black.jpg
-        ;;
     "default")
         $rmOld
         $SetBG $HOME/Pictures/Backgrounds/currentBackground.jpg
+        ;;
+    "black")
+        $rmOld
+        $SetBG $BGFOLDER/black.jpg
         ;;
     "select picture")
         BGjpg=$(find $HOME/Pictures/ -name *.jpg)
