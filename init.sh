@@ -23,6 +23,19 @@ instNeovim()
     ln -s $DOTFILES_ROOT/neovim/init.vim $NVIM_ROOT/init.vim
 }
 
+instDoomEmacs()
+{
+    mv $HOME/.doom.d/init.el $HOME/.doom.d/init.el.BakJalupa
+    ln -s $DOTFILES_ROOT/emacs/init.el $HOME/.doom.d/
+
+    mv $HOME/.doom.d/config.el $HOME/.doom.d/config.el.BakJalupa
+    ln -s $DOTFILES_ROOT/emacs/config.el $HOME/.doom.d/
+
+    mv $HOME/.doom.d/packages.el $HOME/.doom.d/packages.el.BakJalupa
+    ln -s $DOTFILES_ROOT/emacs/packages.el $HOME/.doom.d/
+
+}
+
 instVim()
 {
     mv $HOME/.vimrc $HOME/.vimrc.BakJalupa
@@ -81,6 +94,7 @@ initServices()
 }
 
 instNeovim
+instDoomEmacs
 instVim
 
 #instBash

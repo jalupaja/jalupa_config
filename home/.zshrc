@@ -194,6 +194,7 @@ zipthis()
 
 #environment variables
 export EDITOR=/usr/bin/nvim
+export PATH="$HOME/.emacs.d/bin:$PATH"
 
 #replace ls with sls (exa as backup)
 alias ls="sls -e"
@@ -236,6 +237,7 @@ alias ffp="firefox -p shopping &"
 alias neofetch="neofetch --ascii_colors 208"
 alias vi="nvim"
 alias vim="nvim"
+alias emacs="emacsclient -c -a 'emacs' &"
 alias pss="ps -aux | grep "
 alias mpvv="mpv --player-operation-mode=pseudo-gui"
 alias lf="ranger"

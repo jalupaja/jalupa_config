@@ -8,6 +8,7 @@ menu () {
     printf "dmenu\n"
     printf "todo\n"
     printf "kill\n"
+    printf "emacs\n"
     printf "firefox\n"
     printf "st\n"
     printf "kitty\n"
@@ -68,6 +69,10 @@ case $choice in
         ;;
     "dmenu")
         dmenu_path | $DMENU "$@" | ${SHELL:-"/bin/sh"}
+        return
+        ;;
+    "emacs")
+        emacsclient -c -a 'emacs'
         return
         ;;
     "todo")
