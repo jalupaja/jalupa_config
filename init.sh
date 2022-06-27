@@ -34,6 +34,7 @@ instDoomEmacs()
     mv $HOME/.doom.d/packages.el $HOME/.doom.d/packages.el.BakJalupa
     ln -s $DOTFILES_ROOT/emacs/packages.el $HOME/.doom.d/
 
+    ln -s $DOTFILES_ROOT/emacs/snippets $HOME/.doom.d/
 }
 
 instVim()
