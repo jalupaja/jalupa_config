@@ -38,8 +38,8 @@ case "${choice}" in
         $SetBG $BGFOLDER/black.jpg
         ;;
     "select picture")
-        BGjpg=$(find $HOME/Pictures/ -name *.jpg)
-        BGpng=$(find $HOME/Pictures/ -name *.png)
+        BGjpg=$(find $HOME/Pictures/Backgrounds -name *.jpg)
+        BGpng=$(find $HOME/Pictures/Backgrounds -name *.png)
         newBG=$(echo "$BGjpg\n$BGpng" | $DMENU)
         if [ -n "$newBG" ]; then
             $rmOld
