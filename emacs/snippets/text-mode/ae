@@ -1,5 +1,6 @@
 # -*- mode: snippet -*-
 # name: ae
+# binding: C-m a
 # key: ae
 # --
 ä

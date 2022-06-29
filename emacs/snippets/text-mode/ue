@@ -1,4 +1,6 @@
 # -*- mode: snippet -*-
 # name: ue
+# binding: C-m u
 # key: ue
+# --
 ü

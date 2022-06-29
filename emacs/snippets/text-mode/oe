@@ -1,5 +1,6 @@
 # -*- mode: snippet -*-
 # name: oe
+# binding: C-m o
 # key: oe
 # --
 ö
