@@ -75,12 +75,42 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+;; Hotkeys
+; code
 (map! :leader
       :desc "Comment code"
       "c SPC" #'evilnc-comment-or-uncomment-lines)
+
+; insert
 (map! :leader
       :desc "Color picker (C-c r)"
       "i c" #'helm-colors)
 
+; tabs
+(map! :leader
+      :desc "tabs"
+      "v")
+(map! :leader
+      :desc "next tab"
+      "v t" #'tab-next)
+(map! :leader
+      :desc "tab switcher"
+      "v s" #'tab-switcher)
+(map! :leader
+      :desc "previous tab"
+      "v T" #'tab-previous)
+(map! :leader
+      :desc "new tab"
+      "v n" #'tab-new)
+(map! :leader
+      :desc "kill tab"
+      "v k" #'tab-close)
+
+;toggle
+(map! :leader
+      :desc "tab bar"
+      "t t" #'tab-bar-mode)
+
+;; config
 ; activate beacon
 (baecon-mode 1)
