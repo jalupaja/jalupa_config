@@ -92,23 +92,6 @@ bindkey '^[[B' history-substring-search-down
 
 ##########################################
 
-LAST_REPO="" 
-cd() #xcript to autostart onefetch when entering a new repo
-{ #by Quazear_omeage on: https://reddit.com/r/unixporn/comments/sxa02o/oc_neofetch_for_git_repositories
-    builtin cd "$@"
-    git rev-parse 2>/dev/null
-    if [ $? -eq 0 ]; then
-        if [ "$LAST_REPO" != $(basename $(git rev-parse --show-toplevel)) ]; then
-            printf "\033c"
-            echo ""
-            onefetch
-            LAST_REPO=$(basename $(git rev-parse --show-toplevel))
-        fi
-    fi
-    sls -De
-    echo ""
-}
-
 clear()
 {
     printf "\033c"
@@ -170,19 +153,13 @@ do
             *.odt|*.doc|*.docx|*.xls|*.xlsx|*.xlsx|*.odp|*.ods|*.pptx|*.odg)       onlyoffice-desktopeditors ./"$n"     ;;
             *.xopp)     xournalpp ./"$n" &   ;;
             *.asm)   sasm ./"$n" & ;;
-            *)  nvim ./"$n"     ;;
+            *)  vim ./"$n"     ;;
         esac
     else
         echo "'$n' - file does not exist"
         return 1
     fi
 done
-}
-
-live()
-{
-    live-server -q &
-    nvim index.html
 }
 
 zipthis()
@@ -193,7 +170,7 @@ zipthis()
 ###############################
 
 #environment variables
-export EDITOR=/usr/bin/nvim
+export EDITOR=/usr/bin/vim
 export PATH="$HOME/.emacs.d/bin:$PATH"
 
 #replace ls with sls (exa as backup)
@@ -235,8 +212,6 @@ alias ffp="firefox -p shopping &"
 
 #other aplications
 alias neofetch="neofetch --ascii_colors 208"
-alias vi="nvim"
-alias vim="nvim"
 alias emacs="emacsclient -c -a 'emacs' &"
 alias pss="ps -aux | grep "
 alias mpvv="mpv --player-operation-mode=pseudo-gui"
