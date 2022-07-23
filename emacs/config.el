@@ -91,14 +91,14 @@
       :desc "tabs"
       "v")
 (map! :leader
+      :desc "previous tab"
+      "v h" #'tab-previous)
+(map! :leader
       :desc "next tab"
-      "v t" #'tab-next)
+      "v l" #'tab-next)
 (map! :leader
       :desc "tab switcher"
       "v s" #'tab-switcher)
-(map! :leader
-      :desc "previous tab"
-      "v T" #'tab-previous)
 (map! :leader
       :desc "new tab"
       "v n" #'tab-new)
