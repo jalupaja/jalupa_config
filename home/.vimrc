@@ -15,9 +15,8 @@ filetype plugin indent on
 filetype plugin on
 
 call plug#begin('~/.config/nvim/plugged')
-Plug 'scrooloose/nerdcommenter'     " commend Keybindings
+Plug 'scrooloose/nerdcommenter'     " commend Keybinding
 Plug 'jiangmiao/auto-pairs'         " automatic brackets
-Plug 'ctrlpvim/ctrlp.vim'           " File Search via CTRL-P
 Plug 'sbdchd/neoformat'             " auto formatter
 Plug 'jacoborus/tender.vim'         " colorscheme
 
