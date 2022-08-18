@@ -87,7 +87,7 @@ zipthis()
 
 #environment variables
 export EDITOR=/usr/bin/vim
-export PATH="$HOME/.emacs.d/bin:$PATH"
+export PATH="$HOME/.emacs.d/bin:$HOME/.local/bin:$PATH"
 
 #replace ls with sls (exa as backup)
 alias ls="sls -e"
@@ -134,6 +134,7 @@ alias mpvv="mpv $1 --player-operation-mode=pseudo-gui"
 alias lf="ranger"
 alias grep='grep --colour=auto'
 alias df='df -h'                                                # Human-readable sizes
+alias du='du -h'
 alias free='free -m'                                            # Show sizes in MB
 
 #dmenu
