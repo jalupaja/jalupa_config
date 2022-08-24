@@ -213,10 +213,12 @@ alias ffp="firefox -p shopping &"
 #other aplications
 alias neofetch="neofetch --ascii_colors 208"
 alias emacs="emacsclient -c -a 'emacs' &"
+alias e="emacsclient -c"
 alias pss="ps -aux | grep "
 alias mpvv="mpv --player-operation-mode=pseudo-gui"
 alias lf="ranger"
 alias grep='grep --colour=auto'
+alias g='grep'
 alias df='df -h'                                                # Human-readable sizes
 alias du='du -h'
 alias free='free -m'                                            # Show sizes in MB
