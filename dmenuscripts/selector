@@ -39,6 +39,7 @@ menu () {
     printf "firefox research\n"
     printf "firefox social\n"
     printf "firefox shopping\n"
+    printf "firefox github\n"
     printf "virtmanager\n"
     printf "wifi\n"
     printf "wifi gui\n"
@@ -97,6 +98,10 @@ case $choice in
         ;;
     "firefox shopping")
         $CMD "firefox -p shopping"
+        return
+        ;;
+    "firefox github")
+        $CMD "firefox -p github"
         return
         ;;
     "tor browser")
