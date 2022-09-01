@@ -86,7 +86,7 @@ zipthis()
 ###############################3
 
 #environment variables
-export EDITOR=/usr/bin/vim
+export EDITOR=/usr/bin/nvim
 export PATH="$HOME/.emacs.d/bin:$HOME/.local/bin:$PATH"
 
 #replace ls with sls (exa as backup)
