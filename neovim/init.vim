@@ -1,8 +1,6 @@
 " howto update:
 " :PlugUpgrade
 " :PlugUpdate
-" :TSUpdate
-" :CocUpdate
 
 set showmatch
 set ignorecase
@@ -26,8 +24,7 @@ Plug 'scrooloose/nerdcommenter'     " commend Keybindings
 Plug 'jiangmiao/auto-pairs'         " automatic brackets
 
 " --- color schemes
-Plug 'srcery-colors/srcery-vim'
-Plug 'itchyny/lightline.vim'
+"Plug 'itchyny/lightline.vim'
 " ---
 
 Plug 'honza/vim-snippets'           " autocomplete snippets
@@ -35,7 +32,6 @@ Plug 'sirver/ultisnips'             " configure snippets
 Plug 'skywind3000/asynctasks.vim'   " auto build, run stuff
 Plug 'skywind3000/asyncrun.vim'
 Plug 'sbdchd/neoformat'             " auto formatter
-Plug 'norcalli/nvim-colorizer.lua'  " show color as background on text
 Plug 'KabbAmine/vCoolor.vim'        " color picker
 
 " --- language support
@@ -56,12 +52,6 @@ let mapleader=" "
 "  use ranger as filemanager
 let g:rnvimr_ex_enable = 1
 nmap <leader>m :RnvimrToggle<CR>
-
-" -----------------------
-" colorizer config
-lua <<EOF
-require'colorizer'.setup()
-EOF
 
 " -----------------------
 "  Snippet config
@@ -113,21 +103,21 @@ let g:asyncrun_open = 10
 
 " -----------------------
 "  Colorscheme config: lightline, srcery
-set noshowmode      " remove -- INSERT --
-let g:srcery_italic = 1
-let g:lightline = {
-            \ 'colorscheme': 'srcery',
-               \ 'active': {
-               \   'right': [ [ 'lineinfo' ],
-               \              [ 'percent' ],
-               \              [ 'fileformat', 'fileencoding' ] ]
-               \ },
-               \ 'component': {
-               \   'charvaluehex': '0x%B'
-               \ },
-               \ }
-colorscheme srcery
-hi Normal guibg=NONE ctermbg=NONE " remove background
+"set noshowmode      " remove -- INSERT --
+"let g:srcery_italic = 1
+"let g:lightline = {
+            "\ 'colorscheme': 'srcery',
+               "\ 'active': {
+               "\   'right': [ [ 'lineinfo' ],
+               "\              [ 'percent' ],
+               "\              [ 'fileformat', 'fileencoding' ] ]
+               "\ },
+               "\ 'component': {
+               "\   'charvaluehex': '0x%B'
+               "\ },
+               "\ }
+"colorscheme srcery
+"hi Normal guibg=NONE ctermbg=NONE " remove background
 
 " -----------------------
 "  remap keys
