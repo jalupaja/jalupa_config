@@ -124,6 +124,7 @@ let g:asyncrun_open = 10
 " :inoremap ii <Esc> " map ii in insertmode to Escape
 tnoremap <Esc> <C-\><C-n> " allow ESC in terminal mode
 vmap <Leader>y "+y " map copy to system clipboard
+inoremap ii <Esc>
 nnoremap <Leader>k :wincmd k<CR>
 nnoremap <Leader>j :wincmd j<CR>
 nnoremap <Leader>h :wincmd h<CR>
