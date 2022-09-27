@@ -5,7 +5,8 @@ DMENU="dmenu -l 4 -i"
 fixes="keyboard
 audio
 screen
-multi monitor"
+multi monitor
+bluetooth"
 
 toFix=$(echo "$fixes" | $DMENU)
 
@@ -30,6 +31,10 @@ case "$toFix" in
         xrandr --auto --output DP-2 --right-of eDP-1
         sleep 1
         feh --bg-fill $HOME/Pictures/Backgrounds/currentBackground.jpg
+        ;;
+    "bluetooth")
+        mpris-proxy & #allow bluetooth media control keys
+        /bin/sh -c "pulseaudio --daemonize"
         ;;
     *)
         ;;
