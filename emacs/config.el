@@ -113,4 +113,4 @@
 
 ;; config
 ; activate beacon
-(baecon-mode 1)
+(beacon-mode 1)
