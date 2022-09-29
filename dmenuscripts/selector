@@ -14,7 +14,7 @@ menu () {
     printf "kitty\n"
     printf "sasm\n"
     printf "mpv\n"
-    printf "music player\n"
+    printf "Harmonoid(music player)\n"
     printf "vlc\n"
     printf "joplin\n"
     printf "signal\n"
@@ -133,7 +133,7 @@ case $choice in
         $CMD "mpv --player-operation-mode=pseudo-gui"
         return
         ;;
-    "music player")
+    "Harmonoid(music player)")
         $CMD harmonoid
         return
         ;;
