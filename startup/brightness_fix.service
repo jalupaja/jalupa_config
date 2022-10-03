@@ -4,7 +4,7 @@ Description=fix brightness control
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh chmod 666 /sys/class/backlight/intel_backlight/brightness
+ExecStart=/bin/bash -c 'chmod 666 /sys/class/backlight/intel_backlight/brightness'
 RemainAfterExit=no
 
 [Install]
