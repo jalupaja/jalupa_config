@@ -88,10 +88,8 @@ instDunst()
 
 initServices()
 {
-    #cp $DOTFILES_ROOT/startup/rc.local /etc/
-    sudo ln -s $DOTFILES_ROOT/startup/rc.local /etc/rc.local
-    sudo cp $DOTFILES_ROOT/startup/rc-local.service /etc/systemd/system/rc-local.service
-    sudo systemctl enable rc-local
+    sudo cp $DOTFILES_ROOT/startup/brightness_fix.service /etc/systemd/system/brightness_fix.service
+    sudo systemctl enable brightness_fix
 }
 
 instNeovim

@@ -114,3 +114,6 @@
 ;; config
 ; activate beacon
 (beacon-mode 1)
+
+; activate latex-preview-pane
+(latex-preview-pane-enable)
