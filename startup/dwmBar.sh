@@ -1,6 +1,6 @@
 #!/bin/sh
 
-batteryToSend="1"
+batteryToSend="4"
 
 while true; do
 
@@ -18,11 +18,17 @@ while true; do
     #battery
     battery=$(cat /sys/class/power_supply/BAT0/capacity)
 
+    echo $batteryToSend
     if [ "$batteryToSend" -eq "1" ]; then
 
         if [ "$battery" -le "5" ]; then
             notify-send -u critical -a battery -t 120000 "battery low!"
             batteryToSend=0
+        fi
+    elif [ "$batteryToSend" -eq "0" ]; then
+
+        if [ "$battery" -le "2" ]; then
+            notify-send -u critical -a battery -t 120000 "battery very low!!!"
         fi
     fi
     curBattery="🔋 $battery%"
