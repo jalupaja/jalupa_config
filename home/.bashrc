@@ -142,6 +142,10 @@ alias free='free -m'                                            # Show sizes in 
 #dmenu
 alias dmenu_run="dmenu_run -l 12 -i "
 
+#rclone
+alias up="rclone sync ~/Documents/lists webDAV-lists:"
+alias down="rclone sync webDAV-lists: ~/Documents/lists "
+
 ####################################
 
 # setup starship prompt (install: sh -c "$(curl -fsSL https://starship.rs/install.sh)")
