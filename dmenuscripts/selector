@@ -170,7 +170,8 @@ case $choice in
         return
         ;;
     "protonvpn")
-        $CMD protonvpn
+        $CMD qomui-gui
+        #$CMD protonvpn
         return
         ;;
     "riseupvpn")
