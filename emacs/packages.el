@@ -52,3 +52,4 @@
 (package! tldr)
 (package! latex-preview-pane)
 (package! beacon)
+(package! org-bullets)
