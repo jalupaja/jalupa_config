@@ -1,12 +1,14 @@
 #!/bin/sh
 
-DMENU="dmenu -l 4 -i"
+DMENU="dmenu -l 7 -i"
 
 fixes="keyboard
 audio
 screen
 multi monitor
-bluetooth"
+bluetooth
+mousepad
+touch"
 
 toFix=$(echo "$fixes" | $DMENU)
 
@@ -35,6 +37,12 @@ case "$toFix" in
     "bluetooth")
         mpris-proxy & #allow bluetooth media control keys
         /bin/sh -c "pulseaudio --daemonize"
+        ;;
+    "mousepad")
+        if [ "$(echo "activate\ndeactivate" | $DMENU)" = "activate" ]; then xinput enable 12; else xinput disable 12; fi
+        ;;
+    "touch")
+        if [ "$(echo "activate\ndeactivate" | $DMENU)" = "activate" ]; then xinput enable 10 && xinput map-to-output 10 eDP-1; else xinput disable 10; fi
         ;;
     *)
         ;;
