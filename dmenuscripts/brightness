@@ -26,26 +26,24 @@ end () {
 getopts "ids:" flag
 case "${flag}" in
     i) 
-        if [ "$current" -eq "1" ]; then
+        if [ "$current" -eq "0" ]; then
+            value=1
+        elif [ "$current" -eq "1" ]; then
             value=5
+        elif [ "$(($current + 5))" -gt "100" ]; then
+            value=100
         else
-            if [ "$(($current + 5))" -gt "100" ]; then
-                value=100
-            else
-                value=$(($current + 5))
-            fi
+            value=$(($current + 5))
         fi
         end
         ;;
     d)
         if [ "$current" -eq "1" ]; then
             value=0
+        elif [ "$(($current - 5))" -lt "1" ]; then
+            value=1
         else
-            if [ "$(($current - 5))" -lt "1" ]; then
-                value=1
-            else
-                value=$(($current - 5))
-            fi
+            value=$(($current - 5))
         fi
         end
         ;;
