@@ -115,10 +115,12 @@
 ;; config
 ; activate beacon
 (beacon-mode 1)
+(semantic-mode)
+(global-semantic-stickyfunc-mode)
 
-; HOOKS
-
+;; HOOKS
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+(add-hook 'latex-mode-hook (lambda () (latex-preview-pane-mode 1)))
 
 ; ORG MODE
 (after! org
