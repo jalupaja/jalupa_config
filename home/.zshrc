@@ -173,6 +173,9 @@ zipthis()
 export EDITOR=/usr/bin/nvim
 export PATH="$HOME/.emacs.d/bin:$HOME/.local/bin:$PATH"
 
+# allow aliases when using sudo
+alias sudo='sudo '
+
 #replace ls with sls (exa as backup)
 alias ls="sls -e"
 alias ll="sls -le"
@@ -222,6 +225,7 @@ alias g='grep'
 alias df='df -h'                                                # Human-readable sizes
 alias du='du -h'
 alias free='free -m'                                            # Show sizes in MB
+alias mount="sudo mount -o uid=$USER "
 
 #dmenu
 alias dmenu_run="dmenu_run -l 12 -i "
