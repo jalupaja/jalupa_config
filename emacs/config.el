@@ -112,6 +112,29 @@
       :desc "tab bar"
       "t t" #'tab-bar-mode)
 
+;snippet alterantive
+(defun translate-umlaut ()
+  "translate german umlaut Snippets, credits: chat.openai.com (idk. I'm impressed)"
+  (interactive)
+  (let ((pos (point)))
+    (cond
+     ((looking-back "ue")
+      (delete-char -2)
+      (insert "ü"))
+     ((looking-back "ae")
+      (delete-char -2)
+      (insert "ä"))
+     ((looking-back "oe")
+      (delete-char -2)
+      (insert "ö"))
+     ((looking-back "ss")
+      (delete-char -2)
+      (insert "ß"))
+      (indent-for-tab-command))
+    ))
+
+(global-set-key (kbd "<tab>") 'translate-umlaut)
+
 ;; config
 ; activate beacon
 (beacon-mode 1)
