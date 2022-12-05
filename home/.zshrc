@@ -225,7 +225,8 @@ alias g='grep'
 alias df='df -h'                                                # Human-readable sizes
 alias du='du -h'
 alias free='free -m'                                            # Show sizes in MB
-alias mount="sudo mount -o uid=$USER "
+alias mount="sudo mount -o uid=$USER"
+alias umount="sudo umount"
 
 #dmenu
 alias dmenu_run="dmenu_run -l 12 -i "
