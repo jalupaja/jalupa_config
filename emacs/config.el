@@ -33,7 +33,6 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-ayu-dark)
-;; (set-face-foreground 'font-lock-string-face "dark green")
 (set-face-foreground 'font-lock-comment-face "dark green")
 ;; (setq doom-theme 'leuven) ; bright theme
 
@@ -79,7 +78,6 @@
 ;; they are implemented.
 
 ;; Hotkeys
-; 
 ; code
 (map! :leader
       :desc "Comment code"
