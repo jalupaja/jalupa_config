@@ -130,7 +130,7 @@
      ((looking-back "ss")
       (delete-char -2)
       (insert "ß"))
-      (indent-for-tab-command))
+      (t (indent-for-tab-command)))
     ))
 
 (global-set-key (kbd "<tab>") 'translate-umlaut)
