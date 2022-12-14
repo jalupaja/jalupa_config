@@ -92,17 +92,17 @@ initServices()
     sudo systemctl enable brightness_fix
 }
 
-instNeovim
-instDoomEmacs
-instVim
+#instNeovim
+#instDoomEmacs
+#instVim
 
 #instBash
-instZsh
+#instZsh
 
-instNeofetch
+#instNeofetch
 #instStarship
 #instXorg
 #instPicom
-#instDunst
+instDunst
 
 #initServices

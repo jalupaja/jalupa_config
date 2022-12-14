@@ -37,7 +37,7 @@ menu () {
     printf "calculator\n"
     printf "camera\n"
     printf "thunar (file manager)\n"
-    printf "firefox research\n"
+    printf "firefox uni\n"
     printf "firefox social\n"
     printf "firefox shopping\n"
     printf "firefox github\n"
@@ -86,11 +86,11 @@ case $choice in
         return
         ;;
     "firefox")
-        $CMD firefox
+        $CMD firefox -p research
         return
         ;;
-    "firefox research")
-        $CMD "firefox -p research"
+    "firefox uni")
+        $CMD "firefox -p Uni"
         return
         ;;
     "firefox social")
@@ -103,6 +103,10 @@ case $choice in
         ;;
     "firefox github")
         $CMD "firefox -p github"
+        return
+        ;;
+    "discord")
+        $CMD "firefox -p discord"
         return
         ;;
     "tor browser")
@@ -158,7 +162,7 @@ case $choice in
         return
         ;;
     "bitwarden")
-        $CMD bitwarden-desktop
+        $CMD bitwarden
         return
         ;;
     "keepassxc")
@@ -180,10 +184,6 @@ case $choice in
         ;;
     "onionshare")
         $CMD onionshare
-        return
-        ;;
-    "discord")
-        $CMD "firefox -p discord"
         return
         ;;
     "spotify")

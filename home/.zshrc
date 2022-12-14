@@ -74,10 +74,11 @@ export LESS=-R
 
 
 ## Plugins section: Enable fish style features
-# Use syntax highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#plugins=(zsh-history-substring-search)
 # Use history substring search
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+source ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+# Use syntax highlighting
+source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # bind UP and DOWN arrow keys to history substring search
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
@@ -220,7 +221,7 @@ alias e="emacsclient -c"
 alias pss="ps -aux | grep "
 alias mpvv="mpv --player-operation-mode=pseudo-gui"
 alias lf="ranger"
-alias grep='grep --colour=auto'
+alias grep='grep --colour=auto -i'
 alias g='grep'
 alias df='df -h'                                                # Human-readable sizes
 alias du='du -h'
@@ -230,6 +231,23 @@ alias umount="sudo umount"
 
 #dmenu
 alias dmenu_run="dmenu_run -l 12 -i "
+
+export PATH=$PATH:/home/jalupa/.spicetify
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/jalupa/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/jalupa/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/jalupa/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/jalupa/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
 ####################################
 

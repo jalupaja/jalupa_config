@@ -9,10 +9,10 @@ levels="5
 70
 99"
 
-current=$(amixer sget Master | awk -F "[][]" '/Left:/ { print $2 }')
+current=$(amixer sget Master | awk -F "[][]" '/Mono:/ { print $2 }')
 
 end () {
-    notify-send -a "volume" "set volume to $(amixer sget Master | awk -F "[][]" '/Left:/ { print $2 }') [$(amixer sget Master | awk -F "[][]" '/Left:/ { print $4 }')]"
+    notify-send -a "volume" "set volume to $(amixer sget Master | awk -F "[][]" '/Mono:/ { print $2 }') [$(amixer sget Master | awk -F "[][]" '/Mono:/ { print $6 }')]"
     exit 0
 }
 
@@ -28,11 +28,12 @@ case "${flag}" in
         ;;
     t) #toggle
         amixer set Master toggle
+        amixer set Headphone on
         end
         ;;
     m) #toggle mute
-        amixer set Capture toggle
-    notify-send -a "volume" "set microphone to $(amixer sget Capture | awk -F "[][]" '/Left:/ { print $2 }') [$(amixer sget Capture | awk -F "[][]" '/Left:/ { print $4 }')]"
+        amixer -c 1 set Mic toggle
+    notify-send -a "volume" "set microphone to $(amixer -c 1 sget Mic | awk -F "[][]" '/Mono:/ { print $2 }') [$(amixer -c 1 sget Mic | awk -F "[][]" '/Mono:/ { print $6 }')]"
         exit 0
         ;;
     s) #set

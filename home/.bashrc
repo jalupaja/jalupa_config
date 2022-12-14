@@ -136,7 +136,7 @@ alias e="emacsclient -c"
 alias pss="ps -aux | grep "
 alias mpvv="mpv $1 --player-operation-mode=pseudo-gui"
 alias lf="ranger"
-alias grep='grep --colour=auto'
+alias grep='grep --colour=auto -i'
 alias g='grep'
 alias df='df -h'                                                # Human-readable sizes
 alias du='du -h'
@@ -146,6 +146,24 @@ alias umount="sudo umount"
 
 #dmenu
 alias dmenu_run="dmenu_run -l 12 -i "
+
+export PATH=$PATH:/home/jalupa/.spicetify
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/jalupa/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/jalupa/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/jalupa/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/jalupa/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
 
 ####################################
 
@@ -163,4 +181,3 @@ echo -e '
  \|________|\|__|\|__|\|_______|\|_______|\|__|     \|__|\|__|
 
 '
-
