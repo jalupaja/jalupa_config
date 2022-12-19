@@ -1,4 +1,6 @@
 #!/bin/bash
+xrandr --output DP-0 --mode 2560x1440 -r 239.96
+nm-applet & # protonvpn fix
 setxkbmap eu
 syncthing --no-browser &
 clipmenud &
