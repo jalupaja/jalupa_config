@@ -51,6 +51,8 @@ menu () {
     printf "brightness\n"
     printf "volume\n"
     printf "pavucontrol (volume control)\n"
+    printf "mount\n"
+    printf "umount\n"
     printf "lock\n"
     printf "sleep\n"
     printf "shutdown\n"
@@ -252,6 +254,14 @@ case $choice in
         ;;
     "pavucontrol (volume control)")
         $CMD pavucontrol
+        return
+        ;;
+    "mount")
+        $DMSCRIPTS/'mount -m'
+        return
+        ;;
+    "umount")
+        $DMSCRIPTS/'mount -u'
         return
         ;;
     "lock")
