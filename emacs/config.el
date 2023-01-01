@@ -83,6 +83,11 @@
       :desc "Comment code"
       "c SPC" #'evilnc-comment-or-uncomment-lines)
 
+; open
+(map! :leader
+      :desc "open Dired" "o ." #'dired-jump
+      :desc "open st" "o s" (lambda () (interactive (start-process "st" nil "st" "-e" "zsh"))))
+
 ; insert
 (map! :leader
       :desc "Color picker (C-c r)"
