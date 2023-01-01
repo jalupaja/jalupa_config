@@ -108,6 +108,23 @@
       :desc "kill tab"
       "v k" #'tab-close)
 
+;dired
+; add default vim keybindings
+(evil-define-key 'normal dired-mode-map
+  (kbd "h") 'dired-up-directory
+  (kbd "l") 'dired-find-file)
+
+(evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file)
+(evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file)
+
+(map! :leader
+      (:prefix ("d" . "dired"))
+      (:after dired
+              (:map dired-mode-map
+               :desc "Show hidden files" "d h" #'dired-omit-mode
+               :desc "Peep-dired image previews" "d p" #'peep-dired
+               :desc "Dired view file" "d v" #'dired-view-file)))
+
 ;toggle
 (map! :leader
       :desc "tab bar"
@@ -154,6 +171,9 @@
 ;; HOOKS
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 (add-hook 'latex-mode-hook (lambda () (latex-preview-pane-mode 1)))
+
+;; DIRED
+(setq dired-omit-files "^\\\..*$")
 
 ; ORG MODE
 (after! org
