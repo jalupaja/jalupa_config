@@ -1,0 +1,36 @@
+#!/bin/bash
+
+DMENU="dmenu -l 10 -p"
+MOUNTPOINTS="/mnt/usb\n/mnt/usb2"
+
+getopts "mu" flag
+case "${flag}" in
+    u) # umount
+        to_umnt=$(lsblk -e 7 -o TYPE,NAME,SIZE,MOUNTPOINTS -l | tail -n +2 | sed '/^.*[0-9]. *$/d' | sed 's/^part //g'| $DMENU " umount ")
+        if [ -n "$to_umnt" ];
+        then
+            if [ "$(id -u)" != "0" ];
+            then
+                echo "" | $DMENU " password " -P | sudo -S umount $(echo $to_umnt | awk '{print $3}')
+            else
+                sudo umount $(echo $to_umnt | awk '{print $3}')
+            fi
+        fi
+        ;;
+    m | *) # default is mount
+        to_mnt=$(lsblk -e 7 -o TYPE,NAME,SIZE,MOUNTPOINTS -l | tail -n +2 | sed '/^disk.*$/d' | sed 's/^part //g'| $DMENU " mount ")
+        if [ -n "$to_mnt" ];
+        then
+            mnt_to=$(echo -e $MOUNTPOINTS | $DMENU " mount to ")
+            if [ -n "$mnt_to" ];
+            then
+                if [ "$(id -u)" != "0" ];
+                then
+                    echo "" | $DMENU " password " -P | sudo -S mount -o uid=$USER /dev/$(echo $to_mnt | awk '{print $1}') $mnt_to
+                else
+                    sudo mount -o uid=$USER /dev/$(echo $to_mnt | awk '{print $1}') $mnt_to
+                fi
+            fi
+        fi
+        ;;
+esac
