@@ -29,11 +29,15 @@ case "${flag}" in
     t) #toggle
         amixer set Master toggle
         amixer set Headphone on
+        amixer set Front on
+        amixer set Surround on
+        amixer set Center on
+        amixer set LFE on
         end
         ;;
     m) #toggle mute
-        amixer -c 1 set Mic toggle
-    notify-send -a "volume" "set microphone to $(amixer -c 1 sget Mic | awk -F "[][]" '/Mono:/ { print $2 }') [$(amixer -c 1 sget Mic | awk -F "[][]" '/Mono:/ { print $6 }')]"
+        amixer -c 2 set Mic toggle
+    notify-send -a "volume" "set microphone to $(amixer -c 2 sget Mic | awk -F "[][]" '/Mono:/ { print $2 }') [$(amixer -c 2 sget Mic | awk -F "[][]" '/Mono:/ { print $6 }')]"
         exit 0
         ;;
     s) #set
