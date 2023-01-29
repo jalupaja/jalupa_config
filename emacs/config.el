@@ -133,7 +133,8 @@
 ;toggle
 (map! :leader
       :desc "tab bar"
-      "t t" #'tab-bar-mode)
+      "t t" #'tab-bar-mode
+      "t d" #'doc-view-mode)
 
 ;snippet alterantive
 (defun translate-umlaut ()
