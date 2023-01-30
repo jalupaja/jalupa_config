@@ -1,0 +1,11 @@
+#!/bin/sh
+
+DMENU="dmenu -l 10 -i"
+processes=$(ps axo user,comm | sed -n -e "s/$USER\s*//p" | sort | uniq)
+
+
+choice=$(echo "$processes" | $DMENU)
+
+if [ -n "$choice" ]; then
+    killall $choice
+fi

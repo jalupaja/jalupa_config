@@ -8,6 +8,7 @@ menu () {
     printf "dmenu\n"
     printf "todo\n"
     printf "kill\n"
+    printf "killall\n"
     printf "emacs\n"
     printf "firefox\n"
     printf "st\n"
@@ -86,6 +87,10 @@ case $choice in
         ;;
     "kill")
         $DMSCRIPTS/kill
+        return
+        ;;
+    "killall")
+        $DMSCRIPTS/killall
         return
         ;;
     "firefox")
