@@ -1,12 +1,9 @@
 #!/bin/sh
 
-# WARNING: this script will kill "bash" process cuz I dont know how to do it and it works for me. this might kill other scripts too so be aware
-
 DMENU="dmenu -l 10 -i"
 SetBG="feh --bg-fill"
 SetGif="$HOME/.config/jalupa_config/dmenuscripts/background/loadGif.sh"
 BGFOLDER=$HOME/.config/jalupa_config/dmenuscripts/background
-rmOld="pkill bash" #bad idea
 
 list="default
 black
@@ -14,13 +11,18 @@ select picture
 select gif
 "
 
+rmOld()
+{
+    kill $(ps axo pid,args | grep 'loadGif.sh' | awk -e '{print $1}' | head -n 1)
+}
+
 useGif ()
 {
     selGif=$(find $BGFOLDER/ -name *.gif | $DMENU)
     if [ -n "$selGif" ]; then
         speed="0.$(echo " " | $DMENU -p "speed:")"
         if [ -n "$speed" ]; then
-            $rmOld
+            rmOld
             $SetGif $speed $selGif
         fi
     fi
@@ -30,11 +32,11 @@ choice=$(echo "$list" | $DMENU)
 
 case "${choice}" in
     "default")
-        $rmOld
+        rmOld
         $SetBG $HOME/Pictures/Backgrounds/currentBackground.jpg
         ;;
     "black")
-        $rmOld
+        rmOld
         $SetBG $BGFOLDER/black.jpg
         ;;
     "select picture")
@@ -42,14 +44,11 @@ case "${choice}" in
         BGpng=$(find $HOME/Pictures/Backgrounds -name *.png)
         newBG=$(echo "$BGjpg\n$BGpng" | $DMENU)
         if [ -n "$newBG" ]; then
-            $rmOld
+            rmOld
             $SetBG "$newBG" &
         fi
         ;;
     "select gif")
         useGif
         ;;
-    *)
-    ;;
 esac
-

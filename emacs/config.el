@@ -83,6 +83,11 @@
       :desc "Comment code"
       "c SPC" #'evilnc-comment-or-uncomment-lines)
 
+; open
+(map! :leader
+      :desc "open Dired" "o ." #'dired-jump
+      :desc "open st" "o s" (lambda () (interactive (start-process "st" nil "st" "-e" "zsh"))))
+
 ; insert
 (map! :leader
       :desc "Color picker (C-c r)"
@@ -107,6 +112,23 @@
 (map! :leader
       :desc "kill tab"
       "v k" #'tab-close)
+
+;dired
+; add default vim keybindings
+(evil-define-key 'normal dired-mode-map
+  (kbd "h") 'dired-up-directory
+  (kbd "l") 'dired-find-file)
+
+(evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file)
+(evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file)
+
+(map! :leader
+      (:prefix ("d" . "dired"))
+      (:after dired
+              (:map dired-mode-map
+               :desc "Show hidden files" "d h" #'dired-omit-mode
+               :desc "Peep-dired image previews" "d p" #'peep-dired
+               :desc "Dired view file" "d v" #'dired-view-file)))
 
 ;toggle
 (map! :leader
