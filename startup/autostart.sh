@@ -9,7 +9,7 @@ if [[ $(ps -aux | grep dwm | wc -l) -gt 1 ]]; then
     echo "FINE"
     dunst &
     emacs --daemon &
-    feh --bg-fill $HOME/Pictures/Backgrounds/currentBackground.jpg
+    $HOME/.fehbg &
     $HOME/.config/jalupa_config/startup/dwmBar.sh &
     # picom --experimental-backends &
     picom &
