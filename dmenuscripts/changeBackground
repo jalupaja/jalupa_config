@@ -5,7 +5,8 @@ SetBG="feh --bg-fill"
 SetGif="$HOME/.config/jalupa_config/dmenuscripts/background/loadGif.sh"
 BGFOLDER=$HOME/.config/jalupa_config/dmenuscripts/background
 
-list="default
+list="random
+default
 black
 select picture
 select gif
@@ -32,6 +33,9 @@ useGif ()
 choice=$(echo "$list" | $DMENU)
 
 case "${choice}" in
+    "random")
+        $SetBG --randomize $HOME/Pictures/Backgrounds
+        ;;
     "default")
         rmOld
         $SetBG $HOME/Pictures/Backgrounds/currentBackground.jpg
