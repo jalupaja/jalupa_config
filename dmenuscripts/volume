@@ -37,7 +37,12 @@ case "${flag}" in
         ;;
     m) #toggle mute
         amixer -c 2 set Mic toggle
-    notify-send -a "volume" "set microphone to $(amixer -c 2 sget Mic | awk -F "[][]" '/Mono:/ { print $2 }') [$(amixer -c 2 sget Mic | awk -F "[][]" '/Mono:/ { print $6 }')]"
+        if [  ! $? = 0 ]; then
+            amixer -c 1 set Mic toggle
+        notify-send -a "volume" "set microphone to $(amixer -c 1 sget Mic | awk -F "[][]" '/Mono:/ { print $2 }') [$(amixer -c 1 sget Mic | awk -F "[][]" '/Mono:/ { print $6 }')]"
+    else
+        notify-send -a "volume" "set microphone to $(amixer -c 2 sget Mic | awk -F "[][]" '/Mono:/ { print $2 }') [$(amixer -c 2 sget Mic | awk -F "[][]" '/Mono:/ { print $6 }')]"
+        fi
         exit 0
         ;;
     s) #set
