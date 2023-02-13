@@ -26,8 +26,10 @@ menu () {
     printf "veracrypt\n"
     printf "spotify\n"
     printf "zathura (pdf viewer)\n"
-    printf "onlyoffice\n"
+    printf "libreoffice\n"
     printf "xournal++\n"
+    printf "blender\n"
+    printf "krita\n"
     printf "protonvpn\n"
     printf "riseupvpn\n"
     printf "brave\n"
@@ -35,6 +37,7 @@ menu () {
     printf "librewolf\n"
     printf "tor browser\n"
     printf "onionshare\n"
+    printf "wireshark\n"
     printf "discord\n"
     printf "calculator\n"
     printf "camera\n"
@@ -198,6 +201,10 @@ case $choice in
         $CMD onionshare
         return
         ;;
+    "wireshark")
+        $CMD wireshark
+        return
+        ;;
     "spotify")
         $CMD spotify
         return
@@ -206,12 +213,20 @@ case $choice in
         $CMD zathura
         return
         ;;
-    "onlyoffice")
-        $CMD onlyoffice-desktopeditors
+    "libreoffice")
+        $CMD libreoffice
         return
         ;;
     "xournal++")
         $CMD xournalpp
+        return
+        ;;
+    "blender")
+        $CMD /home/jalupa/repos/utils/blender/blender
+        return
+        ;;
+    "krita")
+        $CMD krita
         return
         ;;
     "calculator")
