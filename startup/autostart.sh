@@ -4,6 +4,7 @@ nm-applet & # protonvpn fix
 setxkbmap eu
 syncthing --no-browser &
 clipmenud &
+light-locker &
 nohup ~/repos/own/snowflake/proxy/proxy ~/.snowflake.log 2>&1 &
 if [[ $(ps -aux | grep dwm | wc -l) -gt 1 ]]; then
     echo "FINE"
