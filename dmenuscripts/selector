@@ -21,6 +21,7 @@ menu () {
     printf "signal\n"
     printf "tutanota\n"
     printf "element\n"
+    printf "steam\n"
     printf "bitwarden\n"
     printf "keepassxc\n"
     printf "veracrypt\n"
@@ -170,6 +171,10 @@ case $choice in
         ;;
     "element")
         $CMD element-desktop
+        return
+        ;;
+    "steam")
+        $CMD steam
         return
         ;;
     "tutanota")
