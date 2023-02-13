@@ -22,6 +22,7 @@ menu () {
     printf "tutanota\n"
     printf "element\n"
     printf "steam\n"
+    printf "heroic\n"
     printf "bitwarden\n"
     printf "keepassxc\n"
     printf "veracrypt\n"
@@ -175,6 +176,10 @@ case $choice in
         ;;
     "steam")
         $CMD steam
+        return
+        ;;
+    "heroic")
+        $CMD heroic
         return
         ;;
     "tutanota")
