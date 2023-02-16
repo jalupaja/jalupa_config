@@ -9,10 +9,10 @@ levels="5
 70
 99"
 
-current=$(amixer sget Master | awk -F "[][]" '/Mono:/ { print $2 }')
+current=$(amixer sget Master | awk -F "[][]" '/Left:/ { print $2 }')
 
 end () {
-    notify-send -a "volume" "set volume to $(amixer sget Master | awk -F "[][]" '/Mono:/ { print $2 }') [$(amixer sget Master | awk -F "[][]" '/Mono:/ { print $6 }')]"
+    notify-send -a "volume" "set volume to $(amixer sget Master | awk -F "[][]" '/Left:/ { print $2 }') [$(amixer sget Master | awk -F "[][]" '/Left:/ { print $4 }')]"
     exit 0
 }
 
