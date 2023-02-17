@@ -28,9 +28,6 @@ menu () {
     printf "keepassxc\n"
     printf "veracrypt\n"
     printf "spotify\n"
-    printf "zathura (pdf viewer)\n"
-    printf "libreoffice\n"
-    printf "xournal++\n"
     printf "blender\n"
     printf "krita\n"
     printf "protonvpn\n"
@@ -40,6 +37,9 @@ menu () {
     printf "librewolf\n"
     printf "tor browser\n"
     printf "onionshare\n"
+    printf "zathura (pdf viewer)\n"
+    printf "libreoffice\n"
+    printf "xournal++\n"
     printf "wireshark\n"
     printf "discord\n"
     printf "calculator\n"
@@ -129,11 +129,11 @@ case $choice in
         return
         ;;
     "librewolf")
-        $CMD /home/jalupa/.local/share/flatpak/app/io.gitlab.librewolf-community/x86_64/stable/5d2af9f5bacd4fd599f80f84cbe8eee75731cead20f2a9936bfe700959d4012c/files/lib/librewolf
+        $CMD /home/jalupa/.local/share/flatpak/app/io.gitlab.librewolf-community/x86_64/stable/5d2af9f5bacd4fd599f80f84cbe8eee75731cead20f2a9936bfe700959d4012c/files/lib/librewolf/librewolf
         return
         ;;
     "brave")
-        $CMD brave
+        $CMD /home/jalupa/.local/share/flatpak/app/com.brave.Browser/current/43dfbb833f5b725a42e2571481a2c8c3b7dd7859a128aee6d276c4fc5a8ff7e5/files/brave/brave
         return
         ;;
     "portmaster")
