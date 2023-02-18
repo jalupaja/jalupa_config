@@ -5,10 +5,10 @@ batteryToSend="4"
 while true; do
 
     #volume
-    if [ "$(amixer sget Master | awk -F "[][]" '/Mono:/ { print $6 }')" = "off" ]; then
-        curVolume="🔈-$(amixer sget Master | awk -F "[][]" '/Mono:/ { print $2 }')"
+    if [ "$(amixer sget Master | awk -F "[][]" '/Left:/ { print $6 }')" = "off" ]; then
+        curVolume="🔈-$(amixer sget Master | awk -F "[][]" '/Left:/ { print $2 }')"
     else
-        curVolume="🔊 $(amixer sget Master | awk -F "[][]" '/Mono:/ { print $2 }')"
+        curVolume="🔊 $(amixer sget Master | awk -F "[][]" '/Left:/ { print $2 }')"
     fi
 
     #date
