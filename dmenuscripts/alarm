@@ -1,0 +1,48 @@
+#!/bin/bash
+
+DMENU="dmenu"
+
+menu()
+{
+    printf "alarm\n"
+    printf "countdown\n"
+    printf "silent countdown\n"
+}
+
+alarm()
+{
+    notify-send -a "alarm" "alarm!" -u "critical"
+    notify-send -a "alarm" "alarm!!" -u "critical"
+    notify-send -a "alarm" "alarm!!!" -u "critical"
+}
+
+choice=$(menu | $DMENU -l 3) || exit
+case $choice in
+    "alarm")
+        to_alarm=$(echo $(date +%H:%M) | $DMENU -l 1 -p "alarm")
+        if [[ "$to_alarm" =~ ^[0-9]{2}:[0-9]{2}$ ]]; then
+            while [ "$(date +%H:%M)" != "$to_alarm" ]; do
+                sleep 1
+            done
+            alarm
+        else
+            notify-send -a "alarm" "alarm: wrong syntax" -u "critical" -t 3000
+        fi
+        ;;
+    "countdown")
+        sec=$(echo "" | $DMENU -p "countdown in sec" | bc -l)
+        for i in $(seq $sec -1 1); do
+            notify-send -a "countdown" $i -t 1000
+            sleep 1
+        done
+        alarm
+        ;;
+    "silent countdown")
+        sec=$(echo "" | $DMENU -p "countdown in sec" | bc -l)
+        sleep $sec
+        alarm
+        ;;
+    *)
+        echo "idk what happend. terminating..." && exit 0
+        ;;
+esac

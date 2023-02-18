@@ -51,6 +51,7 @@ menu () {
     printf "firefox shopping\n"
     printf "firefox github\n"
     printf "virtmanager\n"
+    printf "alarm\n"
     printf "wifi\n"
     printf "wifi gui\n"
     printf "bluetooth\n"
@@ -263,6 +264,10 @@ case $choice in
         ;;
     "virtmanager")
         $CMD virt-manager
+        return
+        ;;
+    "alarm")
+        $DMSCRIPTS/alarm
         return
         ;;
     "wifi")
