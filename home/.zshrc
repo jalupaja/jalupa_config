@@ -149,7 +149,7 @@ do
         case "${n%,}" in
             *.pdf|*.epub)
                 zathura "$n" &      ;;
-            *.mpg|*.jpg|.*jpeg|*.png)      nsxiv ./"$n"      ;;
+            *.mpg|*.jpg|.*jpeg|*.png)      feh ./"$n"      ;;
             *.gif|*.xpm|*.avi|*.flv|*.wav|*.webm|*.wma|*.wmv|*.w2v|*.m4a|*.m4v|*.mkv|*.mov|*.mp3|*.mp4|*.mpeg|*.mpg)    mpv ./"$n"  ;;
             *.odt|*.doc|*.docx|*.xls|*.xlsx|*.xlsx|*.odp|*.ods|*.pptx|*.odg)       onlyoffice-desktopeditors ./"$n"     ;;
             *.xopp)     xournalpp ./"$n" &   ;;
