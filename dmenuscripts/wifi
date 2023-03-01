@@ -7,11 +7,11 @@
 
 DMENU="dmenu -i -p "
 
-case $(echo "CONNECT\nDISCONNECT\nWIFI ON\nWIFI OFF" | $DMENU "WIFI Options: " -l 4;) in
+case $(echo -e "CONNECT\nDISCONNECT\nWIFI ON\nWIFI OFF" | $DMENU "WIFI Options: " -l 4;) in
 	CONNECT)
 		wifiname=$(nmcli d wifi list | $DMENU "Select WIFI" -l 20 | cut -d' ' -f9);
         if [ -n "$wifiname" ]; then
-            pass=$(echo | $DMENU "Password: ");
+            pass=$(echo "" | $DMENU "Password: ");
             if [ -n "$wifi" ]; then
                 nmcli d wifi connect $wifiname password $pass
             else

@@ -11,9 +11,9 @@ case "${flag}" in
         then
             if [ "$(id -u)" != "0" ];
             then
-                echo "" | $DMENU " password " -P | sudo -S umount $(echo $to_umnt | awk '{print $3}')
+                echo "" | $DMENU " password " -P | sudo -S umount $(echo -e $to_umnt | awk '{print $3}')
             else
-                sudo umount $(echo $to_umnt | awk '{print $3}')
+                sudo umount $(echo -e $to_umnt | awk '{print $3}')
             fi
         fi
         ;;
@@ -26,9 +26,9 @@ case "${flag}" in
             then
                 if [ "$(id -u)" != "0" ];
                 then
-                    echo "" | $DMENU " password " -P | sudo -S mount -o uid=$USER /dev/$(echo $to_mnt | awk '{print $1}') $mnt_to
+                    echo "" | $DMENU " password " -P | sudo -S mount -o uid=$USER /dev/$(echo -e $to_mnt | awk '{print $1}') $mnt_to
                 else
-                    sudo mount -o uid=$USER /dev/$(echo $to_mnt | awk '{print $1}') $mnt_to
+                    sudo mount -o uid=$USER /dev/$(echo -e $to_mnt | awk '{print $1}') $mnt_to
                 fi
             fi
         fi

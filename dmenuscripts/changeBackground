@@ -28,7 +28,7 @@ useGif ()
     fi
 }
 
-choice=$(echo "$list" | $DMENU)
+choice=$(echo -e "$list" | $DMENU)
 
 case "${choice}" in
     "default")
@@ -42,7 +42,7 @@ case "${choice}" in
     "select picture")
         BGjpg=$(find $HOME/Pictures/Backgrounds -name *.jpg)
         BGpng=$(find $HOME/Pictures/Backgrounds -name *.png)
-        newBG=$(echo "$BGjpg\n$BGpng" | $DMENU)
+        newBG=$(echo -e "$BGjpg\n$BGpng" | $DMENU)
         if [ -n "$newBG" ]; then
             rmOld
             $SetBG "$newBG" &

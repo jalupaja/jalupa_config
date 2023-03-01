@@ -279,11 +279,11 @@ case $choice in
         return
         ;;
     "shutdown")
-        if [ "$(echo "yes\nno" | $DMENU)" = "yes" ]; then systemctl poweroff; fi
+        if [ "$(echo -e "yes\nno" | $DMENU)" = "yes" ]; then systemctl poweroff; fi
         return
         ;;
     "restart")
-        if [ "$(echo "yes\nno" | $DMENU)" = "yes" ]; then systemctl reboot; fi
+        if [ "$(echo -e "yes\nno" | $DMENU)" = "yes" ]; then systemctl reboot; fi
         return
         ;;
     "picom")

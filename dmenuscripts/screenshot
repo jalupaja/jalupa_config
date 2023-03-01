@@ -54,8 +54,8 @@ main() {
   # some different syntax. Luke smith has done a video about this efficiency
   # and it has been used in earlier scripts
 
-  # name=$(echo "${i}" | awk '{print $1}')
-  # rest="$(echo "${i}" | awk '{print $2}')"
+  # name=$(echo -e "${i}" | awk '{print $1}')
+  # rest="$(echo -e "${i}" | awk '{print $2}')"
 
   # Think of "i%% *" as awk '{print $1}' in this case, it isn't a 1 to 1 but
   # for this example it does the same thing, same applies for "i##* " but for

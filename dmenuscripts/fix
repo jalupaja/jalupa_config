@@ -10,7 +10,7 @@ bluetooth
 mousepad
 touch"
 
-toFix=$(echo "$fixes" | $DMENU)
+toFix=$(echo -e "$fixes" | $DMENU)
 
 case "$toFix" in
     "keyboard")
@@ -39,10 +39,10 @@ case "$toFix" in
         /bin/sh -c "pulseaudio --daemonize"
         ;;
     "mousepad")
-        if [ "$(echo "activate\ndeactivate" | $DMENU)" = "activate" ]; then xinput enable 12; else xinput disable 12; fi
+        if [ "$(echo -e "activate\ndeactivate" | $DMENU)" = "activate" ]; then xinput enable 12; else xinput disable 12; fi
         ;;
     "touch")
-        if [ "$(echo "activate\ndeactivate" | $DMENU)" = "activate" ]; then xinput enable 10 && xinput map-to-output 10 eDP-1; else xinput disable 10; fi
+        if [ "$(echo -e "activate\ndeactivate" | $DMENU)" = "activate" ]; then xinput enable 10 && xinput map-to-output 10 eDP-1; else xinput disable 10; fi
         ;;
     *)
         ;;
