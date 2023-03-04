@@ -83,6 +83,15 @@ zipthis()
     zip -r "$(basename "$(pwd)")".zip .
 }
 
+#open all copied links in firefox
+fcp()
+{
+    for i in $(xclip -o)
+    do
+        firefox $i
+    done
+}
+
 ###############################3
 
 #environment variables
