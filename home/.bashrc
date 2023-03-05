@@ -153,6 +153,7 @@ alias free='free -m'                                            # Show sizes in 
 alias mount="sudo mount -o uid=$USER"
 alias umount="sudo umount"
 alias start="/home/jalupa/.config/jalupa_config/startup/autostart.sh"
+alias simple_crypt="~/repos/own/simple_crypt/start.sh"
 
 #dmenu
 alias dmenu_run="dmenu_run -l 12 -i "
