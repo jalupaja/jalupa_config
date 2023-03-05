@@ -44,7 +44,7 @@ menu () {
     printf "discord\n"
     printf "calculator\n"
     printf "camera\n"
-    printf "thunar (file manager)\n"
+    printf "nautilus (file manager)\n"
     printf "store\n"
     printf "firefox uni\n"
     printf "firefox social\n"
@@ -254,8 +254,8 @@ case $choice in
         $CMD deepin-camera
         return
         ;;
-    "thunar (file manager)")
-        $CMD thunar
+    "nautilus (file manager)")
+        $CMD nautilus
         return
         ;;
     "store")
