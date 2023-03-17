@@ -83,6 +83,14 @@ zipthis()
     zip -r "$(basename "$(pwd)")".zip .
 }
 
+fcp()
+{
+    for i in $(xclip -o)
+    do
+        firefox $i
+    done
+}
+
 ###############################3
 
 #environment variables
@@ -143,6 +151,7 @@ alias du='du -h'
 alias free='free -m'                                            # Show sizes in MB
 alias mount="sudo mount -o uid=$USER"
 alias umount="sudo umount"
+alias simple_crypt="~/repos/own/simple_crypt/start.sh"
 
 #dmenu
 alias dmenu_run="dmenu_run -l 12 -i "
