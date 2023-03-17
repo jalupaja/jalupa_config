@@ -53,3 +53,4 @@
 (package! latex-preview-pane)
 (package! beacon)
 (package! org-bullets)
+(package! peep-dired)

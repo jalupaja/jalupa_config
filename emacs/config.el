@@ -44,7 +44,6 @@
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/Documents/lists/")
 
-
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
@@ -119,15 +118,15 @@
   (kbd "h") 'dired-up-directory
   (kbd "l") 'dired-find-file)
 
-(evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file)
-(evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file)
+;; (evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file)
+;; (evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file)
 
 (map! :leader
       (:prefix ("d" . "dired"))
       (:after dired
               (:map dired-mode-map
                :desc "Show hidden files" "d h" #'dired-omit-mode
-               :desc "Peep-dired image previews" "d p" #'peep-dired
+               ;; :desc "Peep-dired image previews" "d p" #'peep-dired
                :desc "Dired view file" "d v" #'dired-view-file)))
 
 ;toggle
@@ -205,7 +204,7 @@
   (ispell-hunspell-add-multi-dic "de_DE,de_CH,en_GB,en_US")
   ;; For saving words to the personal dictionary, don't infer it from
   ;; the locale, otherwise it would save to ~/.hunspell_de_DE.
-  (setq ispell-personal-dictionary "~/.hunspell_personal"))
+  ;; (setq ispell-personal-dictionary "~/.hunspell_personal"))
 
 ;; The personal dictionary file has to exist, otherwise hunspell will
 ;; silently not use it.
