@@ -86,10 +86,11 @@ zipthis()
 #open all copied links in firefox
 fcp()
 {
-    for i in $(xclip -o)
+    links=$(xclip -o | sort -R)
+    while IFS= read -r i
     do
         firefox $i
-    done
+    done <<< "$links"
 }
 
 ###############################3

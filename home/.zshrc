@@ -171,10 +171,11 @@ zipthis()
 #open all copied links in firefox
 fcp()
 {
-    for i in $(xclip -o)
+    links=$(xclip -o | sort -R)
+    while IFS= read -r i 
     do
         firefox $i
-    done
+    done <<< "$links"
 }
 
 ###############################
@@ -203,7 +204,8 @@ alias repo="cd $HOME/repos/own/"
 alias repu="cd $HOME/repos/utils/"
 alias dot="cd $HOME/.config/jalupa_config/"
 alias dwnl="cd $HOME/Downloads/"
-alias doc="cd $HOME/Documents/" alias ..="cd .."
+alias doc="cd $HOME/Documents/" 
+alias ..="cd .."
 alias ...="cd ../.."
 
 #moving stuff
