@@ -180,6 +180,9 @@ fcp()
 #environment variables
 export EDITOR=/usr/bin/nvim
 export PATH="$HOME/.emacs.d/bin:$HOME/.local/bin:$PATH"
+# fix java for dwm
+export _JAVA_AWT_WM_NONREPARENTING=1
+export AWT_TOOLKIT=MToolkit
 
 # allow aliases when using sudo
 alias sudo='sudo '
