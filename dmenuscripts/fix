@@ -14,8 +14,9 @@ toFix=$(echo -e "$fixes" | $DMENU)
 
 case "$toFix" in
     "keyboard")
+
+        setxkbmap eu
         setxkbmap -option caps:escape_shifted_capslock
-        setxkbmap -layout "us,de" -variant "basic,nodeadkeys" -option grp:ctrls_toggle
         ;;
     "audio")
         pkill pulseaudio
