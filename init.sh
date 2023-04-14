@@ -3,6 +3,15 @@
 DOTFILES_ROOT=$(pwd -P)
 NVIM_ROOT="$HOME/.config/nvim"
 
+instXMonad()
+{
+    mkdir $HOME/.config/xmonad
+    # clang
+    mv $HOME/xmonad/xmonad.hs $HOME/xmonad/xmonad.hs.BakJalupa
+    mv $HOME/.xmobarrc $HOME/.xmobarrc.BakJalupa
+    ln -s $DOTFILES_ROOT/xmonad/.xmobarrc $HOME/
+}
+
 instNeovim()
 {
     mkdir $HOME/.config/nvim
@@ -92,6 +101,7 @@ initServices()
     sudo systemctl enable brightness_fix
 }
 
+instXMonad
 instNeovim
 instDoomEmacs
 instVim
