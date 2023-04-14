@@ -30,8 +30,8 @@ case "$toFix" in
         xrandr --auto
         sleep 3
         setxkbmap -option caps:escape_shifted_capslock
-        setxkbmap -layout "us,de" -variant "basic,nodeadkeys" -option grp:ctrls_toggle
-        xrandr --auto --output DP-2 --right-of eDP-1
+        setxkbmap -layout "eu"        
+        xrandr --auto --output DP-2-1 --right-of eDP-1
         sleep 1
         feh --bg-fill $HOME/Pictures/Backgrounds/currentBackground.jpg
         ;;
