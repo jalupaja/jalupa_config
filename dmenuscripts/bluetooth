@@ -47,10 +47,10 @@ toggle_power() {
 # Checks if controller is scanning for new devices
 scan_on() {
     if bluetoothctl show | grep -F -q "Discovering: yes"; then
-        echo "Scan: on"
+        echo -e "Scan: on"
         return 0
     else
-        echo "Scan: off"
+        echo -e "Scan: off"
         return 1
     fi
 }
@@ -63,7 +63,7 @@ toggle_scan() {
         show_menu
     else
         bluetoothctl scan on &
-        echo "Scanning..."
+        echo -e "Scanning..."
         sleep 5
         show_menu
     fi
@@ -72,10 +72,10 @@ toggle_scan() {
 # Checks if controller is able to pair to devices
 pairable_on() {
     if bluetoothctl show | grep -F -q "Pairable: yes"; then
-        echo "Pairable: on"
+        echo -e "Pairable: on"
         return 0
     else
-        echo "Pairable: off"
+        echo -e "Pairable: off"
         return 1
     fi
 }
@@ -94,10 +94,10 @@ toggle_pairable() {
 # Checks if controller is discoverable by other devices
 discoverable_on() {
     if bluetoothctl show | grep -F -q "Discoverable: yes"; then
-        echo "Discoverable: on"
+        echo -e "Discoverable: on"
         return 0
     else
-        echo "Discoverable: off"
+        echo -e "Discoverable: off"
         return 1
     fi
 }
@@ -116,7 +116,7 @@ toggle_discoverable() {
 # Checks if a device is connected
 device_connected() {
     device_info=$(bluetoothctl info "$1")
-    if echo "$device_info" | grep -F -q "Connected: yes"; then
+    if echo -e "$device_info" | grep -F -q "Connected: yes"; then
         return 0
     else
         return 1
@@ -137,11 +137,11 @@ toggle_connection() {
 # Checks if a device is paired
 device_paired() {
     device_info=$(bluetoothctl info "$1")
-    if echo "$device_info" | grep -F -q "Paired: yes"; then
-        echo "Paired: yes"
+    if echo -e "$device_info" | grep -F -q "Paired: yes"; then
+        echo -e "Paired: yes"
         return 0
     else
-        echo "Paired: no"
+        echo -e "Paired: no"
         return 1
     fi
 }
@@ -160,11 +160,11 @@ toggle_paired() {
 # Checks if a device is trusted
 device_trusted() {
     device_info=$(bluetoothctl info "$1")
-    if echo "$device_info" | grep -F -q "Trusted: yes"; then
-        echo "Trusted: yes"
+    if echo -e "$device_info" | grep -F -q "Trusted: yes"; then
+        echo -e "Trusted: yes"
         return 0
     else
-        echo "Trusted: no"
+        echo -e "Trusted: no"
         return 1
     fi
 }
@@ -204,7 +204,7 @@ print_status() {
         done
         printf "\n"
     else
-        echo ""
+        echo -e ""
     fi
 }
 
@@ -213,8 +213,8 @@ device_menu() {
     device=$1
 
     # Get device name and mac address
-    device_name=$(echo $device | cut -d ' ' -f 3-)
-    mac=$(echo $device | cut -d ' ' -f 2)
+    device_name=$(echo -e $device | cut -d ' ' -f 3-)
+    mac=$(echo -e $device | cut -d ' ' -f 2)
 
     # Build options
     if device_connected $mac; then
@@ -232,7 +232,7 @@ device_menu() {
     # Match chosen option to command
     case $chosen in
         "" | $divider)
-            echo "No option chosen."
+            echo -e "No option chosen."
             ;;
         $connected)
             toggle_connection $mac
@@ -277,7 +277,7 @@ show_menu() {
     # Match chosen option to command
     case $chosen in
         "" | $divider)
-            echo "No option chosen."
+            echo -e "No option chosen."
             ;;
         $power)
             toggle_power
