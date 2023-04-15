@@ -1,5 +1,6 @@
 #!/bin/bash
 xrandr --output DP-0 --mode 2560x1440 -r 239.96 --left-of HDMI-0 --primary
+xrandr --output HDMI-0 --rotate left
 nm-applet & # protonvpn fix
 setxkbmap eu
 syncthing --no-browser &
