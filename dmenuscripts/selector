@@ -34,6 +34,7 @@ menu () {
     printf "riseupvpn\n"
     printf "brave\n"
     printf "portmaster\n"
+    printf "obs\n"
     printf "librewolf\n"
     printf "tor browser\n"
     printf "onionshare\n"
@@ -139,6 +140,11 @@ case $choice in
         ;;
     "portmaster")
         $CMD "/opt/safing/portmaster/portmaster-start app"
+        return
+        ;;
+    "obs")
+        $CMD /home/jalupa/.local/share/flatpak/app/com.obsproject.Studio/current/active/
+        #FIXME
         return
         ;;
     "st")
