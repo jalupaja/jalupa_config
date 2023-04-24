@@ -43,7 +43,7 @@ case "$toFix" in
         if [ "$(echo -e "activate\ndeactivate" | $DMENU)" = "activate" ]; then xinput enable 12; else xinput disable 12; fi
         ;;
     "touch")
-        if [ "$(echo -e "activate\ndeactivate" | $DMENU)" = "activate" ]; then xinput enable 10 && xinput map-to-output 10 eDP-1; else xinput disable 10; fi
+        if [ "$(echo -e "activate\ndeactivate" | $DMENU)" = "activate" ]; then xinput enable 18 && xinput map-to-output 18 eDP-1; else xinput disable 10; fi
         ;;
     *)
         ;;
