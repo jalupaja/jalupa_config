@@ -43,7 +43,18 @@ case "$toFix" in
         if [ "$(echo -e "activate\ndeactivate" | $DMENU)" = "activate" ]; then xinput enable 12; else xinput disable 12; fi
         ;;
     "touch")
-        if [ "$(echo -e "activate\ndeactivate" | $DMENU)" = "activate" ]; then xinput enable 18 && xinput map-to-output 18 eDP-1; xinput enable 26 && xinput map-to-output 26 eDP-1; else xinput disable 18; xinput disable 28; fi
+        if [ "$(echo -e "activate\ndeactivate" | $DMENU)" = "activate" ]
+        then 
+            xinput enable "Wacom HID 523A Finger" && xinput map-to-output "Wacom HID 523A Finger" eDP-1
+            xinput enable "Wacom HID 523A Pen" && xinput map-to-output "Wacom HID 523A Pen" eDP-1
+            xinput enable "Wacom HID 523A Pen Pen (0xb350e15d)" && xinput map-to-output "Wacom HID 523A Pen Pen (0xb350e15d)" eDP-1
+            xinput enable "Wacom HID 523A Pen Eraser (0xb350e15d)" && xinput map-to-output "Wacom HID 523A Pen Eraser (0xb350e15d)" eDP-1
+        else 
+            xinput disable "Wacom HID 523A Finger"
+            xinput disable "Wacom HID 523A Pen"
+            xinput disable "Wacom HID 523A Pen Pen (0xb350e15d)"
+            xinput disable "Wacom HID 523A Pen Eraser (0xb350e15d)"
+        fi
         ;;
     *)
         ;;
