@@ -196,7 +196,7 @@ ctf()
 {
     cd ~/repos/CTFs
     source utils/.venv/bin/activate
-    for  in $1 
+    for i in $(seq $1) 
     do
         kitty . &
     done
