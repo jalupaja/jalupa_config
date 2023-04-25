@@ -178,6 +178,20 @@ fcp()
     done <<< "$links"
 }
 
+crash()
+{
+    outpath=~/.crash
+    mkdir $outpath
+    \ps aux > $outpath/ps.log
+    sudo dmesg > $outpath/dmesg.log
+    echo 'poweroff?'
+    sleep 3
+    if [ $? -ne 0 ]
+    then 
+        systemctl poweroff
+    fi
+}
+
 ctf()
 {
     cd ~/repos/CTFs
