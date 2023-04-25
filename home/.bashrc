@@ -93,6 +93,17 @@ fcp()
     done <<< "$links"
 }
 
+ctf()
+{
+    cd ~/repos/CTFs
+    source utils/.venv/bin/activate
+    for  in $1 
+    do
+        kitty . &
+    done
+    sudo openvpn THM.ovpn
+}
+
 ###############################3
 
 #environment variables
