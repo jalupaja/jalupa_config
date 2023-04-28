@@ -25,6 +25,7 @@ menu () {
     printf "bitwarden\n"
     printf "keepassxc\n"
     printf "veracrypt\n"
+    printf "bottles\n"
     printf "spotify\n"
     printf "zathura (pdf viewer)\n"
     printf "onlyoffice\n"
@@ -146,7 +147,7 @@ case $choice in
         return
         ;;
     "Harmonoid(music player)")
-        $CMD harmonoid
+        $CMD /home/jakob/repos/utils/Harmonoid/harmonoid
         return
         ;;
     "vlc")
@@ -180,6 +181,10 @@ case $choice in
     "veracrypt")
         $CMD veracrypt
         return
+        ;;
+    "bottles")
+        $CMD 'flatpak run com.usebottles.bottles'
+        return 
         ;;
     "protonvpn")
         $CMD qomui-gui
