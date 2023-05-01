@@ -35,7 +35,7 @@ menu () {
     printf "brave\n"
     printf "portmaster\n"
     printf "obs\n"
-    printf "librewolf\n"
+    printf "Mullvad Browser\n"
     printf "tor browser\n"
     printf "onionshare\n"
     printf "zathura (pdf viewer)\n"
@@ -130,12 +130,12 @@ case $choice in
         $CMD torbrowser-launcher
         return
         ;;
-    "librewolf")
-        $CMD /home/jalupa/.local/share/flatpak/app/io.gitlab.librewolf-community/x86_64/stable/active/files/lib/librewolf/librewolf
+    "Mullvad Browser")
+        $CMD "flatpak run net.mullvad.MullvadBrowser"
         return
         ;;
     "brave")
-        $CMD /home/jalupa/.local/share/flatpak/app/com.brave.Browser/current/active/files/brave/brave
+        $CMD "flatpak run com.brave.Browser"
         return
         ;;
     "portmaster")
@@ -143,8 +143,7 @@ case $choice in
         return
         ;;
     "obs")
-        $CMD /home/jalupa/.local/share/flatpak/app/com.obsproject.Studio/current/active/
-        #FIXME
+        $CMD "flatpak run com.obsproject.Studio"
         return
         ;;
     "st")
@@ -176,7 +175,7 @@ case $choice in
         return
         ;;
     "signal")
-        $CMD /home/jalupa/.local/share/flatpak/app/org.signal.Signal/x86_64/stable/active/files/Signal/signal-desktop
+        $CMD "flatpak run org.signal.Signal"
         return
         ;;
     "element")
@@ -188,7 +187,7 @@ case $choice in
         return
         ;;
     "heroic")
-        $CMD /home/jalupa/.local/share/flatpak/app/com.heroicgameslauncher.hgl/x86_64/stable/active/files/bin/heroic/heroic
+        $CMD "flatpak run com.heroicgameslauncher.hgl"
         return
         ;;
     "lutris")
@@ -196,11 +195,11 @@ case $choice in
         return
         ;;
     "tutanota")
-        $CMD /home/jalupa/.local/share/flatpak/app/com.tutanota.Tutanota/x86_64/stable/active/files/lib/tutanota/tutanota-desktop
+        $CMD "flatpak run com.tutanota.Tutanota"
         return
         ;;
     "bitwarden")
-        $CMD /home/jalupa/.local/share/flatpak/app/com.bitwarden.desktop/x86_64/stable/active/files/Bitwarden/bitwarden
+        $CMD "flatpak run com.bitwarden.desktop"
         return
         ;;
     "keepassxc")
@@ -229,8 +228,7 @@ case $choice in
         return
         ;;
     "spotify")
-        $CMD 
-        return/home/jalupa/.local/share/flatpak/app/com.spotify.Client/x86_64/stable/active/files/bin/spotify
+        $CMD "flatpak run com.spotify.Client"
         ;;
     "zathura (pdf viewer)")
         $CMD zathura
