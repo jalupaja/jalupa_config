@@ -243,7 +243,7 @@ case $choice in
         return
         ;;
     "blender")
-        $CMD /home/jalupa/repos/utils/blender/blender
+        $CMD /opt/blender/blender
         return
         ;;
     "krita")
