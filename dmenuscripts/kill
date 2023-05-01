@@ -1,7 +1,7 @@
 #!/bin/sh
 
 DMENU="dmenu -l 10 -i"
-processes=$(ps axo user,pid,args | sed -n -e "s/$USER\s*//p")
+processes=$(ps axo user,pid,args --sort=-pid | sed -n -e "s/$USER\s*//p")
 
 
 choice=$(echo "$processes" | $DMENU)
