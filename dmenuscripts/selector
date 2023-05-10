@@ -34,6 +34,7 @@ menu () {
     printf "riseupvpn\n"
     printf "brave\n"
     printf "librewolf\n"
+    printf "Mullvad Browser\n"
     printf "tor browser\n"
     printf "onionshare\n"
     printf "discord\n"
@@ -120,6 +121,10 @@ case $choice in
         ;;
     "librewolf")
         $CMD librewolf
+        return
+        ;;
+    "Mullvad Browser")
+        $CMD mullvad-browser
         return
         ;;
     "brave")
