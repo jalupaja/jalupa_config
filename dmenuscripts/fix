@@ -40,7 +40,7 @@ case "$toFix" in
         /bin/sh -c "pulseaudio --daemonize"
         ;;
     "mousepad")
-        if [ "$(echo -e "activate\ndeactivate" | $DMENU)" = "activate" ]; then xinput enable 12; else xinput disable 12; fi
+        if [ "$(echo -e "activate\ndeactivate" | $DMENU)" = "activate" ]; then xinput enable "MSFT0001:01 06CB:CE37 Touchpad"; else xinput disable "MSFT0001:01 06CB:CE37 Touchpad"; fi
         ;;
     "touch")
         if [ "$(echo -e "activate\ndeactivate" | $DMENU)" = "activate" ]
