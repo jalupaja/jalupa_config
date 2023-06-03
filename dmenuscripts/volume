@@ -36,18 +36,11 @@ case "${flag}" in
         end
         ;;
     m) #toggle mute
-        amixer -c 2 set Mic toggle
-        if [  ! $? = 0 ]; then
-            amixer -c 1 set Mic toggle
-            if [  ! $? = 0 ]; then
-                amixer set Capture toggle
-                notify-send -a "volume" "set microphone to $(amixer sget Capture | awk -F "[][]" '/Mono:/ { print $2 }') [$(amixer sget Capture | awk -F "[][]" '/Mono:/ { print $4 }')]"
-            else
-                notify-send -a "volume" "set microphone to $(amixer -c 1 sget Mic | awk -F "[][]" '/Mono:/ { print $2 }') [$(amixer -c 1 sget Mic | awk -F "[][]" '/Mono:/ { print $6 }')]"
-            fi
-        else
-            notify-send -a "volume" "set microphone to $(amixer -c 2 sget Mic | awk -F "[][]" '/Mono:/ { print $2 }') [$(amixer -c 2 sget Mic | awk -F "[][]" '/Mono:/ { print $6 }')]"
-        fi
+        pactl set-source-mute 'alsa_input.usb-0c76_USB_PnP_Audio_Device-00.mono-fallback' toggle
+        # amixer variants
+        # amixer -c 2 set Mic toggle
+        # amixer set Capture toggle
+        # notify-send -a "volume" "set microphone to $(amixer sget Capture | awk -F "[][]" '/Mono:/ { print $2 }') [$(amixer sget Capture | awk -F "[][]" '/Mono:/ { print $4 }')]"
         exit 0
         ;;
     s) #set
