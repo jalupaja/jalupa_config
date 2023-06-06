@@ -1,0 +1,27 @@
+#!/bin/sh
+
+DMENU="dmenu -l 7 -i"
+
+options="eu
+de
+en"
+
+chosen=$(echo -e "$options" | $DMENU)
+
+case "$chosen" in
+    "eu")
+        setxkbmap eu
+        setxkbmap -option caps:escape_shifted_capslock
+        ;;
+    "de")
+        setxkbmap de
+        setxkbmap -option caps:escape_shifted_capslock
+        ;;
+    "en")
+        setxkbmap en
+        setxkbmap -option caps:escape_shifted_capslock
+        ;;
+    *)
+        ;;
+esac
+

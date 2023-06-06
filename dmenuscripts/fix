@@ -2,8 +2,7 @@
 
 DMENU="dmenu -l 7 -i"
 
-fixes="keyboard
-audio
+fixes="audio
 screen
 multi monitor
 bluetooth
@@ -13,11 +12,6 @@ touch"
 toFix=$(echo -e "$fixes" | $DMENU)
 
 case "$toFix" in
-    "keyboard")
-
-        setxkbmap eu
-        setxkbmap -option caps:escape_shifted_capslock
-        ;;
     "audio")
         pkill pulseaudio
         /bin/sh -c "pulseaudio --daemonize"

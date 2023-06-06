@@ -66,6 +66,7 @@ menu () {
     printf "music/radio\n"
     printf "background\n"
     printf "fix\n"
+    printf "keyboard layout\n"
 }
 
 choice=$(menu | $DMENU ) || exit
@@ -319,6 +320,10 @@ case $choice in
         ;;
     "fix")
         $DMSCRIPTS/fix
+        return
+        ;;
+    "keyboard layout")
+        $DMSCRIPTS/keyboard
         return
         ;;
     *)
