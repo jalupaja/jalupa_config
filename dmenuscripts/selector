@@ -29,6 +29,7 @@ menu () {
     printf "veracrypt\n"
     printf "spotify\n"
     printf "blender\n"
+    printf "freecad\n"
     printf "krita\n"
     printf "protonvpn\n"
     printf "riseupvpn\n"
@@ -47,6 +48,7 @@ menu () {
     printf "camera\n"
     printf "nautilus (file manager)\n"
     printf "store\n"
+    printf "Android Studio\n"
     printf "firefox uni\n"
     printf "firefox social\n"
     printf "firefox shopping\n"
@@ -246,6 +248,10 @@ case $choice in
         $CMD /opt/blender/blender
         return
         ;;
+    "freecad")
+        $CMD freecad
+        return
+        ;;
     "krita")
         $CMD krita
         return
@@ -264,6 +270,10 @@ case $choice in
         ;;
     "store")
         $CMD io.elementary.appcenter
+        return
+        ;;
+    "Android Studio")
+        $CMD "flatpak run com.google.AndroidStudio"
         return
         ;;
     "virtmanager")
