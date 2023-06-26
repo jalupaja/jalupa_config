@@ -143,7 +143,7 @@ alias llg="exa -la --color=always --group-directories-first | grep"
 #cd stuff
 alias rep="cd $HOME/repos/"
 alias repo="cd $HOME/repos/own/"
-alias repu="cd $HOME/repos/utils/"
+alias repu="cd /opt/"
 alias dot="cd $HOME/.config/jalupa_config/"
 alias dwnl="cd $HOME/Downloads/"
 alias doc="cd $HOME/Documents/"
