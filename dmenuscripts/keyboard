@@ -4,24 +4,26 @@ DMENU="dmenu -l 7 -i"
 
 options="eu
 de
-en"
+en
+Colemak-DH"
 
 chosen=$(echo -e "$options" | $DMENU)
 
 case "$chosen" in
     "eu")
         setxkbmap eu
-        setxkbmap -option caps:escape_shifted_capslock
         ;;
     "de")
         setxkbmap de
-        setxkbmap -option caps:escape_shifted_capslock
         ;;
     "en")
         setxkbmap en
-        setxkbmap -option caps:escape_shifted_capslock
+        ;;
+    "Colemak-DH")
+        setxkbmap us -variant colemak_dh
         ;;
     *)
         ;;
 esac
+setxkbmap -option caps:escape_shifted_capslock
 
