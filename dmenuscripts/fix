@@ -2,22 +2,18 @@
 
 DMENU="dmenu -l 7 -i"
 
-fixes="keyboard
-audio
+fixes="audio
 screen
 monitor
 bluetooth
 mousepad
 touch
-vpn"
+vpn
+ergo mouse"
 
 toFix=$(echo "$fixes" | $DMENU)
 
 case "$toFix" in
-    "keyboard")
-        setxkbmap -option caps:escape_shifted_capslock
-        setxkbmap -layout "us,de" -variant "basic,nodeadkeys" -option grp:ctrls_toggle
-        ;;
     "audio")
         pkill pulseaudio
         /bin/sh -c "pulseaudio --daemonize"
@@ -41,6 +37,9 @@ case "$toFix" in
         ;;
     "vpn")
         nmcli con down pvpn-ipv6leak-protection
+        ;;
+    "ergo mouse")
+        xinput set-prop 'Logitech Wireless Mouse' 353 -0.5
         ;;
     *)
         ;;

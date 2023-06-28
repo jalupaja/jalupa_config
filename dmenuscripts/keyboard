@@ -1,0 +1,28 @@
+#!/bin/sh
+
+DMENU="dmenu -l 7 -i"
+
+options="eu
+de
+en
+Colemak-DH"
+
+chosen=$(echo -e "$options" | $DMENU)
+
+case "$chosen" in
+    "eu")
+        setxkbmap eu
+        ;;
+    "de")
+        setxkbmap de
+        ;;
+    "en")
+        setxkbmap en
+        ;;
+    "Colemak-DH")
+        setxkbmap us -variant colemak_dh
+        ;;
+    *)
+        ;;
+esac
+setxkbmap -option caps:escape_shifted_capslock
