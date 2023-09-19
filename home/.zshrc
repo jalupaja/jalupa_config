@@ -258,6 +258,7 @@ alias emacs="emacsclient -c -a 'emacs' &"
 alias e="emacsclient -c"
 alias pss="ps -aux | grep "
 alias mpvv="mpv --player-operation-mode=pseudo-gui"
+alias mpvs="mpv --shuffle"
 alias lf="ranger"
 alias grep='grep --colour=auto -i'
 alias g='grep'
