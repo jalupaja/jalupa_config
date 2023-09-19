@@ -48,6 +48,7 @@ menu () {
     printf "camera\n"
     printf "nautilus (file manager)\n"
     printf "store\n"
+    printf "Arduino IDE\n"
     printf "Android Studio\n"
     printf "firefox uni\n"
     printf "firefox social\n"
@@ -74,6 +75,7 @@ menu () {
     printf "translate\n"
     printf "music/radio\n"
     printf "background\n"
+    printf "keybaord layout\n"
     printf "fix\n"
 }
 
@@ -249,7 +251,7 @@ case $choice in
         return
         ;;
     "freecad")
-        $CMD freecad
+        $CMD "flatpak run org.freecadweb.FreeCAD"
         return
         ;;
     "krita")
@@ -270,6 +272,10 @@ case $choice in
         ;;
     "store")
         $CMD io.elementary.appcenter
+        return
+        ;;
+    "Arduino IDE")
+        $CMD "flatpak run cc.arduino.IDE2"
         return
         ;;
     "Android Studio")
@@ -359,6 +365,10 @@ case $choice in
         ;;
     "background")
         $DMSCRIPTS/changeBackground
+        return
+        ;;
+    "keybaord layout")
+        $DMSCRIPTS/keyboard
         return
         ;;
     "fix")
