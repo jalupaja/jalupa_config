@@ -15,8 +15,7 @@ toFix=$(echo "$fixes" | $DMENU)
 
 case "$toFix" in
     "audio")
-        pkill pulseaudio
-        /bin/sh -c "pulseaudio --daemonize"
+        systemctl --user restart pipewire.service
         ;;
     "screen")
         pkill picom

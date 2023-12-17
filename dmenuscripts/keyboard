@@ -7,7 +7,7 @@ de
 en
 Colemak-DH"
 
-chosen=$(echo -e "$options" | $DMENU)
+chosen=$(echo "$options" | $DMENU)
 
 case "$chosen" in
     "eu")
