@@ -1,59 +1,195 @@
-#!/bin/sh
+#!/bin/bash
 
 DMENU="dmenu -l 10 -i"
-SetBG="feh --bg-fill"
-SetGif="$HOME/.config/jalupa_config/dmenuscripts/background/loadGif.sh"
-BGFOLDER=$HOME/.config/jalupa_config/dmenuscripts/background
 
-list="random
-default
-black
-select picture
-select gif
-"
+startingDir="$HOME/.wallpapers"
 
-rmOld()
-{
-    to_kill=$(ps axo pid,args | grep 'loadGif.sh' | awk -e '{print $1}' | head -n 1)
-    kill $to_kill
-}
+# This will save the current call with all arguments to the given path so that you can use it on startup
+CALLSAVEPATH="$HOME/.wallpapercall"
+# CALLSAVEPATH=/dev/null # if you dont want this functionality
 
-useGif ()
-{
-    selGif=$(find $BGFOLDER/ -name *.gif | $DMENU)
-    if [ -n "$selGif" ]; then
-        speed="0.$(echo " " | $DMENU -p "speed:")"
-        if [ -n "$speed" ]; then
-            rmOld
-            $SetGif $speed $selGif
+# get the current file location
+# this is used to find the needded file_selector.sh
+if [ "${0::1}" = "/" ]; then
+    shFile=$0
+else
+    shFile="$(pwd)/$0"
+fi
+# remove this scripts name
+shFileDir=$(echo "$shFile" | sed 's/\/[^\/]*$//')
+
+# build call structure to make it reproduceable
+callStr="$shFile"
+
+# make options accessible from cli
+while getopts "r:m:t:p:h" args; do
+    case "${args}" in
+        r)
+            case "${OPTARG}" in
+                1)
+                    selectedRan="random repeat"
+                    ;;
+                2)
+                    selectedRan="random once"
+                    ;;
+                3)
+                    selectedRan="select once"
+                    ;;
+                    # will use dmenu as a fallback
+            esac
+            ;;
+        m)
+            case "${OPTARG}" in
+                1)
+                    selectedMon="per monitor"
+                    ;;
+                2)
+                    selectedMon="single monitor"
+                    ;;
+                    # will use dmenu as a fallback
+            esac
+            ;;
+        t)
+            selectedTime=${OPTARG}
+            ;;
+        p)
+            path=${OPTARG}
+            ;;
+        h)
+            echo "\
+-r | select random mode: 1=random repeat, 2=random once, 3=select once
+-m | select monitor mode: 1=per monitor, 2=on all monitors
+-t | input the time needed for random repeat
+-p | select the full file or directory path to either the image or the directory from wich to randomly choose images \
+    "
+    exit
+    ;;
+*)
+    # wrong option
+    exit
+    ;;
+esac
+done
+
+if [ -z "$selectedRan" ]; then
+    choice="random repeat\nrandom once\nselect once"
+    selectedRan=$(echo -e $choice | $DMENU)
+
+    if [ -z "$selectedRan" ]; then
+        exit
+    fi
+fi
+
+monitors=($(xrandr --listactivemonitors | tail -n +2 | awk '{print $4}'))
+
+if [ -z "$selectedMon" ]; then
+    if [[ ${#monitors[@]} > 1 ]]; then
+        choice="per monitor\nsingle monitor"
+        selectedMon=$(echo -e $choice | $DMENU)
+
+        if [ -z "$selectedRan" ]; then
+            exit
         fi
     fi
+fi
+
+if [ -z "$path" ]; then
+    if [ "$selectedRan" = "select once" ]; then
+        # select file
+        path=$($shFileDir/file_selector.sh -p "$startingDir")
+    else
+        # select path
+        path=$($shFileDir/file_selector.sh -d -p "$startingDir")
+    fi
+
+    if [ -z "$path" ]; then
+        exit
+    fi
+fi
+
+function switchWallpaper {
+    feh --bg-max "$@"
 }
 
-choice=$(echo "$list" | $DMENU)
+function ranFromDir {
+    file="$(ls $1 -1 -p | grep -v / | shuf -n 1)"
+}
 
-case "${choice}" in
-    "random")
-        $SetBG --randomize $HOME/Pictures/Backgrounds
-        ;;
-    "default")
-        rmOld
-        $SetBG $HOME/Pictures/Backgrounds/currentBackground.jpg
-        ;;
-    "black")
-        rmOld
-        $SetBG $BGFOLDER/black.jpg
-        ;;
-    "select picture")
-        BGjpg=$(find $HOME/Pictures/Backgrounds -name *.jpg)
-        BGpng=$(find $HOME/Pictures/Backgrounds -name *.png)
-        newBG=$(echo "$BGjpg\n$BGpng" | $DMENU)
-        if [ -n "$newBG" ]; then
-            rmOld
-            $SetBG "$newBG" &
+# kill old script if any are running
+script_name=$(echo "$0" | sed 's/.*\///g')
+id=($(ps aux | grep "/$script_name" | awk '{print $2}'))
+first_id=${id[0]}
+# dont kill process if it is the current process
+if [ "$first_id" != "$$" ]; then
+    kill $first_id
+fi
+
+if [ "$selectedRan" = "select once" ]; then
+    # build call structure to make it reproduceable
+    callStr="$callStr -r 3 -m 2 -p $path"
+    echo "$callStr" > $CALLSAVEPATH
+
+    switchWallpaper "$path"
+elif [ "$selectedRan" = "random once" ]; then
+    ## random from directory
+    # TODO this will only allow 2 monitors... (same below)
+    ranFromDir $path
+    file1="$path/$file"
+    ranFromDir $path
+    file2="$path/$file"
+    if [ "$selectedMon" = "per monitor" ]; then
+        # build call structure to make it reproduceable
+        callStr="$callStr -r 2 -m 1 -p $path"
+        echo "$callStr" > $CALLSAVEPATH
+
+        # per monitor
+        # Random in directory
+        switchWallpaper "$file1" "$file2"
+    else
+        # build call structure to make it reproduceable
+        callStr="$callStr -r 2 -m 2 -p $path"
+        echo "$callStr" > $CALLSAVEPATH
+
+        # both monitors
+        switchWallpaper "$file1"
+    fi
+elif [ "$selectedRan" = "random repeat" ]; then
+    if [ -z "$selectedTime" ]; then
+        selectedTime=$(($(echo "every ... seconds" | $DMENU)))
+
+        if [ -z "$selectedRan" ]; then
+            exit
         fi
-        ;;
-    "select gif")
-        useGif
-        ;;
-esac
+    fi
+    if [[ $selectedTime < 1 ]]; then
+        selectedTime=1800
+    fi
+
+    # build call structure to make it reproduceable
+    if [ "$selectedMon" = "per monitor" ]; then
+        callStr="$callStr -r 1 -m 1 -t $selectedTime -p $path"
+    else
+        callStr="$callStr -r 1 -m 2 -t $selectedTime -p $path"
+    fi
+    echo "$callStr" > $CALLSAVEPATH
+
+    while true;
+    do
+        ranFromDir $path
+        file1="$path/$file"
+        ranFromDir $path
+        file2="$path/$file"
+
+        ## random from directory
+        if [ "$selectedMon" = "per monitor" ]; then
+            # per monitor
+                # Random in directory
+            switchWallpaper "$file1" "$file2"
+            ranFromDir $path
+        else
+            # both monitors
+            switchWallpaper "$file1"
+        fi
+        sleep $selectedTime
+    done
+fi

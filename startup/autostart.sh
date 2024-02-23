@@ -6,6 +6,10 @@ setxkbmap eu
 syncthing --no-browser &
 clipmenud &
 light-locker &
+
+# Background
+$(cat ~/.wallpapercall)
+
 nohup ~/repos/own/snowflake/proxy/proxy ~/.snowflake.log 2>&1 &
 if [[ $(ps -aux | grep dwm | wc -l) -gt 1 ]]; then
     echo "FINE"
