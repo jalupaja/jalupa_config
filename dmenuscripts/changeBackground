@@ -136,7 +136,6 @@ if [ "$selectedRan" = "select once" ]; then
     switchWallpaper "$path"
 elif [ "$selectedRan" = "random once" ]; then
     ## random from directory
-    # TODO this will only allow 2 monitors... (same below)
     if [ "$selectedMon" = "per monitor" ]; then
         # build call structure to make it reproduceable
         callStr="$callStr -r 2 -m 1 -p $path"
