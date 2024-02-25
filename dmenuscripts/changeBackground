@@ -108,7 +108,11 @@ if [ -z "$path" ]; then
 fi
 
 function switchWallpaper {
-    feh --bg-max "$@"
+    feh --bg-fill "$@"
+}
+
+function switchWallpaperRan {
+    feh --randomize --bg-fill "$@"
 }
 
 function ranFromDir {
@@ -133,10 +137,6 @@ if [ "$selectedRan" = "select once" ]; then
 elif [ "$selectedRan" = "random once" ]; then
     ## random from directory
     # TODO this will only allow 2 monitors... (same below)
-    ranFromDir $path
-    file1="$path/$file"
-    ranFromDir $path
-    file2="$path/$file"
     if [ "$selectedMon" = "per monitor" ]; then
         # build call structure to make it reproduceable
         callStr="$callStr -r 2 -m 1 -p $path"
@@ -144,12 +144,14 @@ elif [ "$selectedRan" = "random once" ]; then
 
         # per monitor
         # Random in directory
-        switchWallpaper "$file1" "$file2"
+        switchWallpaperRan "$path"
     else
         # build call structure to make it reproduceable
         callStr="$callStr -r 2 -m 2 -p $path"
         echo "$callStr" > $CALLSAVEPATH
 
+        ranFromDir $path
+        file1="$path/$file"
         # both monitors
         switchWallpaper "$file1"
     fi
@@ -175,18 +177,15 @@ elif [ "$selectedRan" = "random repeat" ]; then
 
     while true;
     do
-        ranFromDir $path
-        file1="$path/$file"
-        ranFromDir $path
-        file2="$path/$file"
-
         ## random from directory
         if [ "$selectedMon" = "per monitor" ]; then
             # per monitor
                 # Random in directory
-            switchWallpaper "$file1" "$file2"
+            switchWallpaperRan "$path"
             ranFromDir $path
         else
+            ranFromDir $path
+            file1="$path/$file"
             # both monitors
             switchWallpaper "$file1"
         fi
